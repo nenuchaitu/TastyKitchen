@@ -1,0 +1,14 @@
+.icons {
+  color: #ffff;
+  width: 20px;
+  height: 25px;
+}
+@media screen and (min-width: 577px) {
+  .icons {
+    width: 40px;
+    height: 40px;
+  }
+}
+.icons-spacing {
+  margin-left: 15px;
+}
