@@ -1,12 +1,13 @@
 import {Component} from 'react'
 
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Route, Redirect} from 'react-router-dom'
 
 import ProtectedRoute from './components/ProtectedRoute'
 import Login from './components/Login'
 import Home from './components/Home'
 import Cart from './components/Cart'
 import RestaurantDetailedView from './components/RestaurantDetailedView'
+import NotFound from './components/NotFound'
 import CartContext from './context/CartContext'
 
 import './App.css'
@@ -86,6 +87,8 @@ class App extends Component {
             component={RestaurantDetailedView}
           />
           <ProtectedRoute exact path="/cart" component={Cart} />
+          <Route path="/not-found" component={NotFound} />
+          <Redirect to="not-found" />
         </Switch>
       </CartContext.Provider>
     )

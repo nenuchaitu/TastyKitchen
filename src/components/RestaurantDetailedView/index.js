@@ -14,6 +14,8 @@ import Footer from '../Footer'
 
 import FailureView from '../FailureView'
 
+import FoodItem from '../FoodItem'
+
 import {
   LoadingViewContainer,
   RestaurantDetailsContainer,
@@ -29,6 +31,7 @@ import {
   ValueText,
   ForText,
   ReviewOrCostContainer,
+  FoodItemCardsList,
 } from './StyledComponents'
 
 const apiStatusConstants = {
@@ -62,6 +65,7 @@ class RestaurantDetailedView extends Component {
       foodType: foodItem.food_type,
       imageUrl: foodItem.image_url,
       id: foodItem.id,
+      rating: foodItem.rating,
     })),
   })
 
@@ -78,7 +82,7 @@ class RestaurantDetailedView extends Component {
       method: 'GET',
     }
     const response = await fetch(restaurantDetailsUrl, options)
-    if (response.ok) {
+    if (response.ok === true) {
       const data = await response.json()
       const formattedData = this.getFormattedData(data)
       this.setState({
@@ -123,7 +127,11 @@ class RestaurantDetailedView extends Component {
             </RatingAndCostContainer>
           </RestaurantTextDetailsContainer>
         </RestaurantBannerContainer>
-        <h1>Restaurant Food Items</h1>
+        <FoodItemCardsList>
+          {RestaurantDetails.foodItems.map(eachItem => (
+            <FoodItem key={eachItem.id} FoodItemDetails={eachItem} />
+          ))}
+        </FoodItemCardsList>
       </>
     )
   }

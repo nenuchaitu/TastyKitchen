@@ -1,0 +1,11 @@
+.counter-container {
+  display: flex;
+}
+.counter-button {
+  background-color: transparent;
+  border: 1px solid #000;
+}
+.quantity {
+  margin-left: 10px;
+  margin-right: 10px;
+}

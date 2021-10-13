@@ -1,26 +1,27 @@
-import {Component} from 'react'
-
-import CartContext from '../../context/CartContext'
-
 import './index.css'
 
-class Counter extends Component {
-  render() {
-    return (
-      <CartContext.Provider>
-        <div>
-          <button type="button" onClick={this.onDecrement}>
-            -
-          </button>
-          <div>0</div>
-          <button type="button" onClick={this.onIncrement}>
-            +
-          </button>
-        </div>
-        )
-      </CartContext.Provider>
-    )
+const Counter = props => {
+  const {quantity, incrementQuantity, decrementQuantity} = props
+
+  const onDecrement = () => {
+    decrementQuantity()
   }
+
+  const onIncrement = () => {
+    incrementQuantity()
+  }
+
+  return (
+    <div className="counter-container">
+      <button type="button" onClick={onDecrement} className="counter-button">
+        -
+      </button>
+      <div className="quantity">{quantity}</div>
+      <button type="button" onClick={onIncrement} className="counter-button">
+        +
+      </button>
+    </div>
+  )
 }
 
 export default Counter

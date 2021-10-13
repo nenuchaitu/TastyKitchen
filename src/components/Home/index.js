@@ -71,7 +71,7 @@ class Home extends Component {
       method: 'GET',
     }
     const response = await fetch(offersUrl, options)
-    if (response.ok) {
+    if (response.ok === true) {
       const data = await response.json()
       const formattedData = data.offers.map(offer => ({
         id: offer.id,
@@ -80,6 +80,7 @@ class Home extends Component {
       this.setState({
         offers: formattedData,
         activeOption: sortByOptions[1].value,
+        apiStatus: apiStatusConstants.success,
       })
     } else {
       this.setState({apiStatus: apiStatusConstants.failure})
@@ -147,7 +148,7 @@ class Home extends Component {
       method: 'GET',
     }
     const response = await fetch(restaurantListUrl, options)
-    if (response.ok) {
+    if (response.ok === true) {
       const data = await response.json()
       const TotalRestaurants = data.total
       const formattedData = data.restaurants.map(restaurant => ({
@@ -272,7 +273,6 @@ class Home extends Component {
           <Banner offers={offers} />
           {this.renderApiView()}
         </HomeBodyContainer>
-
         <Footer />
       </>
     )

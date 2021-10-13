@@ -22,6 +22,10 @@ export const RestaurantBannerContainer = styled.div`
   overflow: hidden;
   @media screen and (min-width: 577px) {
     height: 350px;
+    padding-left: 85px;
+    padding-right: 85px;
+  }
+  @media screen and (min-width: 772px) {
     padding-left: 165px;
     padding-right: 165px;
   }
@@ -151,5 +155,26 @@ export const VerticalLine = styled.p`
     font-size: 30px;
     margin-left: 30px;
     margin-right: 30px;
+  }
+`
+export const FoodItemCardsList = styled.ul`
+  padding-left: 0px;
+  margin-left: 0px;
+  list-style: none;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-left: 32px;
+  padding-right: 32px;
+  margin-bottom: 40px;
+  @media screen and (min-width: 577px) {
+    padding-left: 85px;
+    padding-right: 85px;
+    margin-bottom: 80px;
+  }
+  @media screen and (min-width: 772px) {
+    padding-left: 165px;
+    padding-right: 165px;
   }
 `
