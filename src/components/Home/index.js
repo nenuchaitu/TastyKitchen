@@ -3,6 +3,7 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 
 import {BsFilterLeft} from 'react-icons/bs'
+
 import {GrFormNext, GrFormPrevious} from 'react-icons/gr'
 
 import Loader from 'react-loader-spinner'
