@@ -21,6 +21,7 @@ import {
   MobileOptionsContainer,
   LargeScreenOptionsContainer,
   LogoutButton,
+  NavMenUButton,
 } from './StyledComponents'
 
 const menuOptions = [
@@ -43,21 +44,25 @@ const Header = props => {
     <MobileMenuContainer>
       <MobileOptionsContainer>
         {menuOptions.map(option => (
-          <Link
-            key={option.id}
-            className={
-              activeOption === option.id
-                ? 'link-item-mobile selected'
-                : 'link-item-mobile'
-            }
-            to={option.to}
-            onClick={() => {
-              setActiveMenu(option.id)
-            }}
-          >
-            {option.option}
+          <Link key={option.id} to={option.to}>
+            <NavMenUButton
+              type="button"
+              className={
+                activeOption === option.id
+                  ? 'link-item-mobile selected'
+                  : 'link-item-mobile'
+              }
+              onClick={() => {
+                setActiveMenu(option.id)
+              }}
+            >
+              {option.option}
+            </NavMenUButton>
           </Link>
         ))}
+        <LogoutButton type="button" onClick={onClickLogout}>
+          Logout
+        </LogoutButton>
       </MobileOptionsContainer>
       <AiFillCloseCircle
         className="close-button"
@@ -85,19 +90,20 @@ const Header = props => {
         />
         <LargeScreenOptionsContainer>
           {menuOptions.map(option => (
-            <Link
-              key={option.id}
-              className={
-                activeOption === option.id
-                  ? 'link-item-large selected'
-                  : 'link-item-large'
-              }
-              to={option.to}
-              onClick={() => {
-                setActiveMenu(option.id)
-              }}
-            >
-              {option.option}
+            <Link key={option.id} to={option.to}>
+              <NavMenUButton
+                type="button"
+                className={
+                  activeOption === option.id
+                    ? 'link-item-large selected'
+                    : 'link-item-large'
+                }
+                onClick={() => {
+                  setActiveMenu(option.id)
+                }}
+              >
+                {option.option}
+              </NavMenUButton>
             </Link>
           ))}
           <LogoutButton type="button" onClick={onClickLogout}>

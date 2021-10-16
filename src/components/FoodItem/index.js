@@ -22,10 +22,6 @@ import CartContext from '../../context/CartContext'
 class FoodItem extends Component {
   state = {quantity: 0}
 
-  addToCart = () => {
-    this.setState({quantity: 1})
-  }
-
   incrementQuantity = () => {
     this.setState(prevState => ({quantity: prevState.quantity + 1}))
   }
@@ -39,8 +35,12 @@ class FoodItem extends Component {
       <CartContext.Consumer>
         {value => {
           const {FoodItemDetails} = this.props
-          const {cartList} = value
+          const {addCartItem} = value
           const {quantity} = this.state
+          const onClickAddToCart = () => {
+            this.setState({quantity: 1})
+            addCartItem({...FoodItemDetails, quantity})
+          }
 
           return (
             <FoodItemDetailsCard>
@@ -56,7 +56,7 @@ class FoodItem extends Component {
                   <RatingValue>{FoodItemDetails.rating}</RatingValue>
                 </RatingContainer>
                 {quantity === 0 ? (
-                  <AddButton type="button" onClick={this.addToCart}>
+                  <AddButton type="button" onClick={onClickAddToCart}>
                     Add
                   </AddButton>
                 ) : (

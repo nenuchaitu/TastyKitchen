@@ -1,5 +1,3 @@
-import {Redirect} from 'react-router-dom'
-
 import CartContext from '../../context/CartContext'
 
 import noOrdersYet from '../Img/Cart/noOrdersYet.png'
@@ -13,13 +11,19 @@ import {
   NoOrdersHeading,
   NoOrdersText,
   OrderNowButton,
+  OrderNowButtonContainer,
   CartViewContainer,
 } from './StyledComponents'
 
-const Cart = () => (
+const Cart = props => (
   <CartContext.Consumer>
     {value => {
       const {cartList} = value
+      const redirectToHome = () => {
+        const {history} = props
+        history.replace('/')
+      }
+
       const renderEmptyCartView = () => (
         <EmptyCartContainer>
           <NoOrdersImage alt="empty cart" src={noOrdersYet} />
@@ -27,9 +31,11 @@ const Cart = () => (
           <NoOrdersText>
             Your cart is empty. Add something from the menu.
           </NoOrdersText>
-          <OrderNowButton type="button" onClick={() => <Redirect to="/" />}>
-            Order Now
-          </OrderNowButton>
+          <OrderNowButtonContainer>
+            <OrderNowButton type="button" onClick={redirectToHome}>
+              Order Now
+            </OrderNowButton>
+          </OrderNowButtonContainer>
         </EmptyCartContainer>
       )
 

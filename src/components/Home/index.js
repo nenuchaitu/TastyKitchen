@@ -72,6 +72,7 @@ class Home extends Component {
       method: 'GET',
     }
     const response = await fetch(offersUrl, options)
+    console.log(response)
     if (response.ok === true) {
       const data = await response.json()
       const formattedData = data.offers.map(offer => ({
@@ -149,7 +150,8 @@ class Home extends Component {
       method: 'GET',
     }
     const response = await fetch(restaurantListUrl, options)
-    if (response.ok === true) {
+    console.log(response)
+    if (response.ok) {
       const data = await response.json()
       const TotalRestaurants = data.total
       const formattedData = data.restaurants.map(restaurant => ({
@@ -257,7 +259,7 @@ class Home extends Component {
       case apiStatusConstants.success:
         return this.renderRestaurantsListView()
       case apiStatusConstants.failure:
-        return <FailureView />
+        return <FailureView getRestaurantList={this.getRestaurantList} />
       case apiStatusConstants.inProgress:
         return this.renderLoadingView()
       default:

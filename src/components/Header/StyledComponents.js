@@ -76,5 +76,10 @@ export const LogoutButton = styled.button`
   line-height: 16px;
   letter-spacing: 0em;
   text-align: left;
+`
+export const NavMenUButton = styled.button`
+  outline: none;
+  background-color: transparent;
   cursor: pointer;
+  border: none;
 `

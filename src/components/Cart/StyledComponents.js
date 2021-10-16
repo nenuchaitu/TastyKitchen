@@ -11,6 +11,10 @@ export const CartViewContainer = styled.div`
 export const EmptyCartContainer = styled.div`
   width: 80%;
   max-width: 450px;
+  margin-bottom: 40px;
+  @media screen and (min-width: 577px) {
+    margin-bottom: 96px;
+  }
 `
 export const NoOrdersImage = styled.img`
   width: 204px;
@@ -55,4 +59,9 @@ export const OrderNowButton = styled.button`
   top: 0px;
   border-radius: 8px;
   padding: 8px, 16px, 8px, 16px;
+  border: none;
+  cursor: pointer;
+`
+export const OrderNowButtonContainer = styled.div`
+  text-align: center;
 `

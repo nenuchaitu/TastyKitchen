@@ -1,10 +1,10 @@
 import {ErrorViewContainer, FailureImage, RetryButton} from './StyledComponents'
 
 const FailureView = props => {
-  const {retryApiCall} = props
+  const {getRestaurantList} = props
 
   const onClickRetry = () => {
-    retryApiCall()
+    getRestaurantList()
   }
 
   return (

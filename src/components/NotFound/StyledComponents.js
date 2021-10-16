@@ -54,9 +54,14 @@ export const HomeButton = styled.button`
   width: 98px;
   border-radius: 8px;
   padding: 8px, 16px, 8px, 16px;
+  border: none;
+  cursor: pointer;
   @media screen and (min-width: 577px) {
     width: 123px;
     height: 48px;
     padding: 12px, 24px, 12px, 24px;
   }
+`
+export const HomeButtonContainer = styled.div`
+  text-align: center;
 `
