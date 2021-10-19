@@ -20,7 +20,7 @@ export const FoodItemImage = styled.img`
   margin-top: 24px;
   @media screen and (min-width: 577px) {
     height: 150px;
-    width: 255px;
+    width: 230px;
     margin-top: 32px;
   }
 `

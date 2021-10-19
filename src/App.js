@@ -28,12 +28,23 @@ const sortByOptions = [
 class App extends Component {
   state = {cartList: []}
 
+  componentDidMount() {
+    const cartListString = localStorage.getItem('cartData')
+    const cartData = JSON.parse(cartListString)
+    this.setState({cartList: cartData})
+  }
+
   removeCartItem = id => {
     const {cartList} = this.state
     const updatedCartList = cartList.filter(
       eachCartItem => eachCartItem.id !== id,
     )
-    this.setState({cartList: updatedCartList})
+    this.setState({cartList: updatedCartList}, this.setInLocalStorage)
+  }
+
+  setInLocalStorage = () => {
+    const {cartList} = this.state
+    localStorage.setItem('cartData', JSON.stringify(cartList))
   }
 
   addCartItem = FoodItem => {
@@ -53,35 +64,41 @@ class App extends Component {
       }))
     } else {
       const updatedCartList = [...cartList, FoodItem]
-      this.setState({cartList: updatedCartList})
+      this.setState({cartList: updatedCartList}, this.setInLocalStorage)
     }
   }
 
   incrementCartItemQuantity = id => {
-    this.setState(prevState => ({
-      cartList: prevState.cartList.map(eachCartItem => {
-        if (id === eachCartItem.id) {
-          const updatedQuantity = eachCartItem.quantity + 1
-          return {...eachCartItem, quantity: updatedQuantity}
-        }
-        return eachCartItem
+    this.setState(
+      prevState => ({
+        cartList: prevState.cartList.map(eachCartItem => {
+          if (id === eachCartItem.id) {
+            const updatedQuantity = eachCartItem.quantity + 1
+            return {...eachCartItem, quantity: updatedQuantity}
+          }
+          return eachCartItem
+        }),
       }),
-    }))
+      this.setInLocalStorage,
+    )
   }
 
   decrementCartItemQuantity = id => {
     const {cartList} = this.state
     const productObject = cartList.find(eachCartItem => eachCartItem.id === id)
     if (productObject.quantity > 1) {
-      this.setState(prevState => ({
-        cartList: prevState.cartList.map(eachCartItem => {
-          if (id === eachCartItem.id) {
-            const updatedQuantity = eachCartItem.quantity - 1
-            return {...eachCartItem, quantity: updatedQuantity}
-          }
-          return eachCartItem
+      this.setState(
+        prevState => ({
+          cartList: prevState.cartList.map(eachCartItem => {
+            if (id === eachCartItem.id) {
+              const updatedQuantity = eachCartItem.quantity - 1
+              return {...eachCartItem, quantity: updatedQuantity}
+            }
+            return eachCartItem
+          }),
         }),
-      }))
+        this.setInLocalStorage,
+      )
     } else {
       this.removeCartItem(id)
     }
@@ -95,10 +112,13 @@ class App extends Component {
           cartList,
           addCartItem: this.addCartItem,
           removeCartItem: this.removeCartItem,
+          incrementCartItemQuantity: this.incrementCartItemQuantity,
+          decrementCartItemQuantity: this.decrementCartItemQuantity,
         }}
       >
         <Switch>
           <Route exact path="/login" component={Login} />
+          <ProtectedRoute exact path="/cart" component={Cart} />
           <ProtectedRoute
             exact
             path="/"
@@ -109,7 +129,6 @@ class App extends Component {
             path="/restaurant/:id"
             component={RestaurantDetailedView}
           />
-          <ProtectedRoute exact path="/cart" component={Cart} />
           <Route path="/not-found" component={NotFound} />
           <Redirect to="not-found" />
         </Switch>

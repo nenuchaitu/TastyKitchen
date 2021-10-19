@@ -4,6 +4,7 @@ import noOrdersYet from '../Img/Cart/noOrdersYet.png'
 
 import Header from '../Header'
 import Footer from '../Footer'
+import CartListView from '../CartListView'
 
 import {
   EmptyCartContainer,
@@ -39,13 +40,15 @@ const Cart = props => (
         </EmptyCartContainer>
       )
 
-      const renderCartItems = <h1>Hello almost there</h1>
-
       return (
         <>
           <Header />
           <CartViewContainer>
-            {cartList.length === 0 ? renderEmptyCartView() : renderCartItems()}
+            {cartList.length === 0 ? (
+              renderEmptyCartView()
+            ) : (
+              <CartListView cartList={cartList} />
+            )}
           </CartViewContainer>
           <Footer />
         </>
