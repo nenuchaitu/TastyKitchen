@@ -4,6 +4,7 @@
 .counter-button {
   background-color: transparent;
   border: 1px solid #000;
+  cursor: pointer;
 }
 .quantity {
   margin-left: 10px;

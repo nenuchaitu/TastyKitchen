@@ -1,31 +1,18 @@
 import styled from 'styled-components'
 
 export const CartListContainerLarge = styled.div`
-  background-color: #f9fbfe;
-  border: 1px solid #0b69ff1a;
-  margin-top: 48px;
-  margin-bottom: 64px;
-  padding: 38px 0px 48px 0px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   width: 80%;
   overflow: hidden;
-  @media screen and (max-width: 577px) {
-    display: none;
-  }
-`
-export const CartListContainerMobile = styled.div`
-  margin-top: 8px;
-  margin-bottom: 24px;
-  padding-left: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
   @media screen and (min-width: 577px) {
-    display: none;
+    background-color: #f9fbfe;
+    border: 1px solid #0b69ff1a;
+    margin-top: 48px;
+    margin-bottom: 64px;
+    padding: 38px 0px 48px 0px;
   }
 `
 export const CartIndexContainer = styled.div`
@@ -46,8 +33,10 @@ export const CartIndexHeading = styled.h1`
 export const CartHorizontalLine = styled.hr`
   border: 1px dotted #cbd2d9;
   width: 95%;
-  margin-left: 48px;
-  margin-bottom: 24px;
+  @media screen and (min-width: 577px) {
+    margin-left: 48px;
+    margin-bottom: 24px;
+  }
 `
 export const OrderTotalContainer = styled.div`
   width: 85%;
@@ -60,4 +49,31 @@ export const CartItemsList = styled.ul`
   margin-left: 0px;
   padding-left: 0px;
   list-style: none;
+`
+export const PlaceOrderButtonContainer = styled.div`
+  margin-left: auto;
+  margin-top: 24px;
+  margin-bottom: 48px;
+  @media screen and (min-width: 577px) {
+    margin-top: 32px;
+    margin-right: 60px;
+  }
+`
+
+export const CartPlaceOrderButton = styled.button`
+  height: 32px;
+  width: 99px;
+  border-radius: 8px;
+  padding: 8px, 16px, 8px, 16px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  background-color: #f7931e;
+  color: #ffffff;
+  font-family: DM Sans;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0em;
 `

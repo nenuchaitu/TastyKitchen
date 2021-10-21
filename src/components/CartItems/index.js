@@ -10,7 +10,9 @@ import {
   CartItemImage,
   ItemCost,
   CartItemCostAndCounterContainer,
+  CartItemCostAndCounterMobileContainer,
   CartItemName,
+  CartNameContainer,
 } from './StyledComponents'
 
 class CartItems extends Component {
@@ -34,22 +36,34 @@ class CartItems extends Component {
     return (
       <CartContext.Consumer>
         {value => {
-          const {cartItemDetails} = this.props
+          const {cartItemDetails, updateTotal} = this.props
           const {name, imageUrl, cost, quantity} = cartItemDetails
           const {incrementCartItemQuantity, decrementCartItemQuantity} = value
           const incrementQuantity = () => {
             this.setState(prevState => ({quantity: prevState.quantity + 1}))
             incrementCartItemQuantity(cartItemDetails.id)
+            updateTotal(cartItemDetails.cost)
           }
           const decrementQuantity = () => {
             this.setState(prevState => ({quantity: prevState.quantity - 1}))
             decrementCartItemQuantity(cartItemDetails.id)
+            updateTotal(-1 * cartItemDetails.cost)
           }
           return (
             <CartListItem>
               <ImageItemContainer>
                 <CartItemImage src={imageUrl} alt="foodItem" />
-                <CartItemName>{name}</CartItemName>
+                <CartNameContainer>
+                  <CartItemName>{name}</CartItemName>
+                  <CartItemCostAndCounterMobileContainer>
+                    <Counter
+                      incrementQuantity={incrementQuantity}
+                      decrementQuantity={decrementQuantity}
+                      quantity={quantity}
+                    />
+                    <ItemCost>{cost * quantity}</ItemCost>
+                  </CartItemCostAndCounterMobileContainer>
+                </CartNameContainer>
               </ImageItemContainer>
               <CartItemCostAndCounterContainer>
                 <Counter
@@ -57,7 +71,7 @@ class CartItems extends Component {
                   decrementQuantity={decrementQuantity}
                   quantity={quantity}
                 />
-                <ItemCost>{cost}</ItemCost>
+                <ItemCost>{cost * quantity}</ItemCost>
               </CartItemCostAndCounterContainer>
             </CartListItem>
           )
