@@ -26,7 +26,7 @@ const sortByOptions = [
 ]
 
 class App extends Component {
-  state = {cartList: []}
+  state = {cartList: [], paymentStatus: false}
 
   componentDidMount() {
     const cartListString = localStorage.getItem('cartData')
@@ -104,8 +104,16 @@ class App extends Component {
     }
   }
 
+  setCartListToEmpty = () => {
+    this.setState({cartList: [], paymentStatus: true})
+  }
+
+  setPaymentStatus = () => {
+    this.setState({paymentStatus: false})
+  }
+
   render() {
-    const {cartList} = this.state
+    const {cartList, paymentStatus} = this.state
     return (
       <CartContext.Provider
         value={{
@@ -118,7 +126,17 @@ class App extends Component {
       >
         <Switch>
           <Route exact path="/login" component={Login} />
-          <ProtectedRoute exact path="/cart" component={Cart} />
+          <ProtectedRoute
+            exact
+            path="/cart"
+            component={() => (
+              <Cart
+                setCartListToEmpty={this.setCartListToEmpty}
+                paymentStatus={paymentStatus}
+                setPaymentStatus={this.setPaymentStatus}
+              />
+            )}
+          />
           <ProtectedRoute
             exact
             path="/"

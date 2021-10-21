@@ -51,7 +51,7 @@ class CartListView extends Component {
   }
 
   render() {
-    const {cartList} = this.props
+    const {cartList, setAPIPaymentView} = this.props
     const {total} = this.state
     return (
       <>
@@ -78,7 +78,9 @@ class CartListView extends Component {
             <CartIndexHeading>{total}</CartIndexHeading>
           </OrderTotalContainer>
           <PlaceOrderButtonContainer>
-            <CartPlaceOrderButton>Place Order</CartPlaceOrderButton>
+            <CartPlaceOrderButton type="button" onClick={setAPIPaymentView}>
+              Place Order
+            </CartPlaceOrderButton>
           </PlaceOrderButtonContainer>
         </CartListContainerLarge>
       </>
