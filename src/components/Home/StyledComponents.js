@@ -18,25 +18,27 @@ export const RestaurantListContainer = styled.div`
 `
 
 export const PopularHeading = styled.h1`
-font-size: 24px;
-font-weight: 700;
-line-height: 32px;
-font-family: DM Sans;
-font-style: normal;
-letter-spacing: 0px;
-text-align: left;
-@media screen and (min-width:576px){
-font-size: 32px;
-line-height: 48px;`
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  font-family: 'DM Sans';
+  text-align: left;
+  @media screen and (min-width: 576px) {
+    font-size: 32px;
+    line-height: 48px;
+  }
+`
 
 export const FilterContainer = styled.div`
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:flex-start;
-@media screen and (min-width:577px){
-    flex-direction:row;
-    justify-content:space-between;`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  @media screen and (min-width: 577px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+`
 
 export const TagLine = styled.p`
   font-family: DM Sans;
@@ -120,5 +122,20 @@ export const PageIndicator = styled.p`
   text-align: center;
   @media screen and (min-width: 577px) {
     font-size: 20px;
+  }
+`
+export const RestaurantSearch = styled.input`
+  font-size: 14px;
+  background-color: transparent;
+  width: 100%;
+  max-width: 250px;
+  height: 30px;
+  border: 1px solid #000;
+  color: #000;
+  outline: none;
+  align-self: center;
+  margin-top: 20px;
+  ::placeholder {
+    color: #000;
   }
 `

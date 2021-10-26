@@ -16,7 +16,7 @@ class Banner extends Component {
       autoplaySpeed: 3000,
     }
     return (
-      <RestaurantsOffersLoader data-testid="restaurants-offers-loader">
+      <RestaurantsOffersLoader>
         <Slider {...settings}>
           {offers.map(offer => (
             <ImageContainer key={offer.id}>

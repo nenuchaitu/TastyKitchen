@@ -9,6 +9,7 @@ import Cart from './components/Cart'
 import RestaurantDetailedView from './components/RestaurantDetailedView'
 import NotFound from './components/NotFound'
 import CartContext from './context/CartContext'
+import Profile from './components/Profile'
 
 import './App.css'
 
@@ -31,7 +32,9 @@ class App extends Component {
   componentDidMount() {
     const cartListString = localStorage.getItem('cartData')
     const cartData = JSON.parse(cartListString)
-    this.setState({cartList: cartData})
+    if (cartData !== null) {
+      this.setState({cartList: cartData})
+    }
   }
 
   removeCartItem = id => {
@@ -137,6 +140,7 @@ class App extends Component {
               />
             )}
           />
+          <ProtectedRoute exact path="/profile" component={Profile} />
           <ProtectedRoute
             exact
             path="/"

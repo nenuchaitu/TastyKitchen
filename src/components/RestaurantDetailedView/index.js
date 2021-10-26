@@ -81,16 +81,20 @@ class RestaurantDetailedView extends Component {
       },
       method: 'GET',
     }
-    const response = await fetch(restaurantDetailsUrl, options)
-    if (response.ok === true) {
-      const data = await response.json()
-      const formattedData = this.getFormattedData(data)
-      this.setState({
-        RestaurantDetails: formattedData,
-        apiStatus: apiStatusConstants.success,
-      })
-    } else {
-      this.setState({apiStatus: apiStatusConstants.failure})
+    try {
+      const response = await fetch(restaurantDetailsUrl, options)
+      if (response.ok === true) {
+        const data = await response.json()
+        const formattedData = this.getFormattedData(data)
+        this.setState({
+          RestaurantDetails: formattedData,
+          apiStatus: apiStatusConstants.success,
+        })
+      } else {
+        this.setState({apiStatus: apiStatusConstants.failure})
+      }
+    } catch (err) {
+      console.log(err)
     }
   }
 
@@ -160,9 +164,11 @@ class RestaurantDetailedView extends Component {
     return (
       <>
         <Header />
-        <RestaurantDetailsContainer data-testid="restaurant-details-loader">
-          {this.renderApiView()}
-        </RestaurantDetailsContainer>
+        <div testid="restaurant-details-loader">
+          <RestaurantDetailsContainer>
+            {this.renderApiView()}
+          </RestaurantDetailsContainer>
+        </div>
         <Footer />
       </>
     )

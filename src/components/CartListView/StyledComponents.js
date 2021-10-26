@@ -7,7 +7,7 @@ export const CartListContainerLarge = styled.div`
   flex-direction: column;
   width: 80%;
   overflow: hidden;
-  @media screen and (min-width: 577px) {
+  @media screen and (min-width: 768px) {
     background-color: #f9fbfe;
     border: 1px solid #0b69ff1a;
     margin-top: 48px;
@@ -17,9 +17,13 @@ export const CartListContainerLarge = styled.div`
 `
 export const CartIndexContainer = styled.div`
   display: flex;
-  justify-content: space-around;
-  width: 100%;
+  justify-content: space-between;
+  width: 75%;
   align-items: center;
+  flex: 1 1 auto;
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
 `
 export const CartIndexHeading = styled.h1`
   font-family: 'DM Sans';

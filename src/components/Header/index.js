@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {Component} from 'react'
 
 import {Link, withRouter} from 'react-router-dom'
 
@@ -30,89 +30,91 @@ const menuOptions = [
   {option: 'Profile', id: 'PROFILE', to: '/profile'},
 ]
 
-const Header = props => {
-  const [openMenu, setOpenMenu] = useState(false)
-  const [activeOption, setActiveMenu] = useState(menuOptions[0].id)
+class Header extends Component {
+  state = {openMenu: false, activeOption: menuOptions[0].id}
 
-  const onClickLogout = () => {
-    const {history} = props
+  onClickLogout = () => {
+    const {history} = this.props
     Cookies.remove('jwt_token')
     history.replace('/login')
   }
 
-  const renderMobileMenu = () => (
-    <MobileMenuContainer>
-      <MobileOptionsContainer>
-        {menuOptions.map(option => (
-          <Link key={option.id} to={option.to}>
-            <NavMenUButton
-              type="button"
-              className={
-                activeOption === option.id
-                  ? 'link-item-mobile selected'
-                  : 'link-item-mobile'
-              }
-              onClick={() => {
-                setActiveMenu(option.id)
-              }}
-            >
-              {option.option}
-            </NavMenUButton>
-          </Link>
-        ))}
-        <LogoutButton type="button" onClick={onClickLogout}>
-          Logout
-        </LogoutButton>
-      </MobileOptionsContainer>
-      <AiFillCloseCircle
-        className="close-button"
-        onClick={() => {
-          setOpenMenu(false)
-        }}
-      />
-    </MobileMenuContainer>
-  )
+  setActiveOptionId = id => {
+    this.setState({activeOption: id})
+  }
 
-  return (
-    <>
-      <NavHeader>
-        <Link to="/" className="link-item">
-          <HeaderLogoContainer>
-            <HeaderWebLogo src={WebsiteLogo} alt="website logo" />
-            <HeaderHeading>Tasty Kitchens</HeaderHeading>
-          </HeaderLogoContainer>
-        </Link>
-        <GiHamburgerMenu
-          onClick={() => {
-            setOpenMenu(!openMenu)
-          }}
-          className="ham-menu"
-        />
-        <LargeScreenOptionsContainer>
+  renderMobileMenu = () => {
+    const {activeOption} = this.state
+    return (
+      <MobileMenuContainer>
+        <MobileOptionsContainer>
           {menuOptions.map(option => (
-            <Link key={option.id} to={option.to}>
+            <Link key={option.id} to={option.to} className="link-item">
               <NavMenUButton
                 type="button"
-                className={
-                  activeOption === option.id
-                    ? 'link-item-large selected'
-                    : 'link-item-large'
-                }
+                selected={activeOption === option.id}
                 onClick={() => {
-                  setActiveMenu(option.id)
+                  this.setActiveOptionId(option.id)
                 }}
               >
                 {option.option}
               </NavMenUButton>
             </Link>
           ))}
-          <LogoutButton type="button" onClick={onClickLogout}>
+          <LogoutButton type="button" onClick={this.onClickLogout}>
             Logout
           </LogoutButton>
-        </LargeScreenOptionsContainer>
-      </NavHeader>
-      {openMenu ? renderMobileMenu() : ''}
-    </>
-  )
+        </MobileOptionsContainer>
+        <AiFillCloseCircle
+          className="close-button"
+          onClick={() => {
+            this.setState({openMenu: false})
+          }}
+        />
+      </MobileMenuContainer>
+    )
+  }
+
+  render() {
+    const {openMenu, activeOption} = this.state
+
+    return (
+      <>
+        <NavHeader>
+          <Link to="/" className="link-item">
+            <HeaderLogoContainer>
+              <HeaderWebLogo src={WebsiteLogo} alt="website logo" />
+              <HeaderHeading>Tasty Kitchens</HeaderHeading>
+            </HeaderLogoContainer>
+          </Link>
+          <GiHamburgerMenu
+            onClick={() => {
+              this.setState(prevState => ({openMenu: !prevState.openMenu}))
+            }}
+            className="ham-menu"
+          />
+          <LargeScreenOptionsContainer>
+            {menuOptions.map(option => (
+              <Link key={option.id} to={option.to} className="link-item">
+                <NavMenUButton
+                  type="button"
+                  selected={activeOption === option.id}
+                  onClick={() => {
+                    this.setActiveOptionId(option.id)
+                  }}
+                >
+                  {option.option}
+                </NavMenUButton>
+              </Link>
+            ))}
+            <LogoutButton type="button" onClick={this.onClickLogout}>
+              Logout
+            </LogoutButton>
+          </LargeScreenOptionsContainer>
+        </NavHeader>
+        {openMenu ? this.renderMobileMenu() : ''}
+      </>
+    )
+  }
 }
 export default withRouter(Header)

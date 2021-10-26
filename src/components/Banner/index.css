@@ -1,0 +1,15 @@
+.restaurants-offers-loader {
+  width: 100%;
+}
+.image-container {
+  width: 100%;
+}
+.slider-image {
+  width: 100%;
+}
+@media screen and (max-width: 576px) {
+  .slider-image {
+    min-height: 25vh;
+    max-height: 30vh;
+  }
+}

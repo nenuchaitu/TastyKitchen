@@ -30,18 +30,18 @@ const Footer = () => (
       <FooterTagSpan>Contact us on </FooterTagSpan>
     </FooterTagLine>
     <SocialMediaIconsContainer>
-      <FaPinterestSquare className="icons" data-testid="pintrest-social-icon" />
+      <FaPinterestSquare className="icons" testid="pintrest-social-icon" />
       <AiOutlineInstagram
         className="icons icons-spacing"
-        data-testid="instagram-social-icon"
+        testid="instagram-social-icon"
       />
       <AiOutlineTwitter
         className="icons icons-spacing"
-        data-testid="twitter-social-icon"
+        testid="twitter-social-icon"
       />
       <AiFillFacebook
         className="icons icons-spacing"
-        data-testid="facebook-social-icon"
+        testid="facebook-social-icon"
       />
     </SocialMediaIconsContainer>
   </FooterContainer>

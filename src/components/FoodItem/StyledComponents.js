@@ -41,7 +41,7 @@ export const FoodItemName = styled.h1`
   font-style: normal;
   font-weight: 700;
   line-height: 24px;
-  letter-spacing: 0.20000000298023224px;
+  letter-spacing: 0.2px;
   text-align: left;
   @media screen and (min-width: 577px) {
     font-size: 16px;

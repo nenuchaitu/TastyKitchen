@@ -19,7 +19,7 @@ const RestaurantItem = props => {
 
   return (
     <Link to={`/restaurant/${restaurantDetails.id}`} className="link-item">
-      <RestaurantListItem data-testid="restaurant-item">
+      <RestaurantListItem>
         <RestaurantImage src={restaurantDetails.imageUrl} alt="restaurant" />
         <DetailsContainer>
           <RestaurantName>{restaurantDetails.name}</RestaurantName>

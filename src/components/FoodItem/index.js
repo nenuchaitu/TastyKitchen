@@ -57,7 +57,13 @@ class FoodItem extends Component {
           }
           const onClickAddToCart = () => {
             this.setState({quantity: 1})
-            addCartItem({...FoodItemDetails, quantity: 1})
+            addCartItem({
+              cost: FoodItemDetails.cost,
+              quantity: 1,
+              id: FoodItemDetails.id,
+              imageUrl: FoodItemDetails.imageUrl,
+              name: FoodItemDetails.name,
+            })
           }
 
           return (

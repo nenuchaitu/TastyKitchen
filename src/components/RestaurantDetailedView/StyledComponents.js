@@ -63,7 +63,7 @@ export const RestaurantName = styled.h1`
   font-style: normal;
   font-weight: 500;
   line-height: 24px;
-  letter-spacing: 0.20000000298023224px;
+  letter-spacing: 0.2px;
   text-align: left;
   margin-top: -8px;
   color: #fff;

@@ -33,6 +33,7 @@ import {
   NavigationButton,
   PaginationContainer,
   PageIndicator,
+  RestaurantSearch,
 } from './StyledComponents'
 
 const apiStatusConstants = {
@@ -50,6 +51,7 @@ class Home extends Component {
     restaurantList: [],
     activePageNumber: 1,
     totalNumberOfRestaurants: '',
+    searchInput: '',
   }
 
   componentDidMount() {
@@ -71,21 +73,24 @@ class Home extends Component {
       },
       method: 'GET',
     }
-    const response = await fetch(offersUrl, options)
-    console.log(response)
-    if (response.ok === true) {
-      const data = await response.json()
-      const formattedData = data.offers.map(offer => ({
-        id: offer.id,
-        imageUrl: offer.image_url,
-      }))
-      this.setState({
-        offers: formattedData,
-        activeOption: sortByOptions[1].value,
-        apiStatus: apiStatusConstants.success,
-      })
-    } else {
-      this.setState({apiStatus: apiStatusConstants.failure})
+    try {
+      const response = await fetch(offersUrl, options)
+      if (response.ok === true) {
+        const data = await response.json()
+        const formattedData = data.offers.map(offer => ({
+          id: offer.id,
+          imageUrl: offer.image_url,
+        }))
+        this.setState({
+          offers: formattedData,
+          activeOption: sortByOptions[1].value,
+          apiStatus: apiStatusConstants.success,
+        })
+      } else {
+        this.setState({apiStatus: apiStatusConstants.failure})
+      }
+    } catch (err) {
+      console.log(err)
     }
   }
 
@@ -136,12 +141,10 @@ class Home extends Component {
   })
 
   getRestaurantList = async () => {
-    this.setState({apiStatus: apiStatusConstants.inProgress})
-    const {activePageNumber} = this.state
+    const {activePageNumber, searchInput, activeOption} = this.state
     const offset = (activePageNumber - 1) * 9
     const LIMIT = 9
-    const {activeOption} = this.state
-    const restaurantListUrl = `https://apis.ccbp.in/restaurants-list?offset=${offset}&limit=${LIMIT}&sort_by_rating=${activeOption}`
+    const restaurantListUrl = `https://apis.ccbp.in/restaurants-list?offset=${offset}&limit=${LIMIT}&sort_by_rating=${activeOption}&search=${searchInput}`
     const jwtToken = Cookies.get('jwt_token')
     const options = {
       headers: {
@@ -149,33 +152,36 @@ class Home extends Component {
       },
       method: 'GET',
     }
-    const response = await fetch(restaurantListUrl, options)
-    console.log(response)
-    if (response.ok) {
-      const data = await response.json()
-      const TotalRestaurants = data.total
-      const formattedData = data.restaurants.map(restaurant => ({
-        hasOnlineDelivery: restaurant.has_online_delivery,
-        userRating: this.getFormattedUserRating(restaurant.user_rating),
-        id: restaurant.id,
-        name: restaurant.name,
-        hasTableBooking: restaurant.has_table_booking,
-        isDeliveringNow: restaurant.is_delivering_now,
-        costForTwo: restaurant.cost_for_two,
-        cuisine: restaurant.cuisine,
-        imageUrl: restaurant.image_url,
-        menuType: restaurant.menu_type,
-        location: restaurant.location,
-        opensAt: restaurant.opens_at,
-        groupByItem: restaurant.group_by_time,
-      }))
-      this.setState({
-        restaurantList: formattedData,
-        apiStatus: apiStatusConstants.success,
-        totalNumberOfRestaurants: TotalRestaurants,
-      })
-    } else {
-      this.setState({apiStatus: apiStatusConstants.failure})
+    try {
+      const response = await fetch(restaurantListUrl, options)
+      if (response.ok) {
+        const data = await response.json()
+        const TotalRestaurants = data.total
+        const formattedData = data.restaurants.map(restaurant => ({
+          hasOnlineDelivery: restaurant.has_online_delivery,
+          userRating: this.getFormattedUserRating(restaurant.user_rating),
+          id: restaurant.id,
+          name: restaurant.name,
+          hasTableBooking: restaurant.has_table_booking,
+          isDeliveringNow: restaurant.is_delivering_now,
+          costForTwo: restaurant.cost_for_two,
+          cuisine: restaurant.cuisine,
+          imageUrl: restaurant.image_url,
+          menuType: restaurant.menu_type,
+          location: restaurant.location,
+          opensAt: restaurant.opens_at,
+          groupByItem: restaurant.group_by_time,
+        }))
+        this.setState({
+          restaurantList: formattedData,
+          apiStatus: apiStatusConstants.success,
+          totalNumberOfRestaurants: TotalRestaurants,
+        })
+      } else {
+        this.setState({apiStatus: apiStatusConstants.failure})
+      }
+    } catch (err) {
+      console.log(err)
     }
   }
 
@@ -211,35 +217,37 @@ class Home extends Component {
     const {activePageNumber, totalNumberOfRestaurants} = this.state
     return (
       <PaginationContainer>
-        <NavigationButton
-          type="button"
-          onClick={this.previousPage}
-          data-testid="pagination-left-button"
-        >
+        <NavigationButton type="button" onClick={this.previousPage}>
           <GrFormPrevious />
         </NavigationButton>
-        <PageIndicator data-testid="active-page-number">
+        <PageIndicator>
           {activePageNumber} of {Math.ceil(totalNumberOfRestaurants / 9)}
         </PageIndicator>
-        <NavigationButton
-          type="button"
-          onClick={this.nextPage}
-          data-testid="pagination-right-button"
-        >
+        <NavigationButton type="button" onClick={this.nextPage}>
           <GrFormNext />
         </NavigationButton>
       </PaginationContainer>
     )
   }
 
+  setSearchInput = event => {
+    this.setState({searchInput: event.target.value}, this.getRestaurantList)
+  }
+
   renderRestaurantsListView = () => {
-    const {restaurantList} = this.state
+    const {restaurantList, searchInput} = this.state
     return (
       <>
         <RestaurantListContainer>
           <PopularHeading>Popular Restaurants</PopularHeading>
           {this.renderFilter()}
-          <RestaurantList data-testid="restaurants-list-loader">
+          <RestaurantSearch
+            type="search"
+            onChange={this.setSearchInput}
+            value={searchInput}
+            placeholder="Search for a Restaurant..."
+          />
+          <RestaurantList>
             {restaurantList.map(restaurant => (
               <RestaurantItem
                 restaurantDetails={restaurant}

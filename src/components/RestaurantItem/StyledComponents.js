@@ -48,7 +48,7 @@ export const CuisineType = styled.p`
   line-height: 24px;
   text-align: left;
   margin-bottom: -10px;
-  line- @media screen and (min-width: 576px) {
+  @media screen and (min-width: 576px) {
     font-size: 12px;
   }
 `

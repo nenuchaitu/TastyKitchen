@@ -13,11 +13,23 @@ const Counter = props => {
 
   return (
     <div className="counter-container">
-      <button type="button" onClick={onDecrement} className="counter-button">
+      <button
+        type="button"
+        onClick={onDecrement}
+        className="counter-button"
+        testid="decrement-count"
+      >
         -
       </button>
-      <div className="quantity">{quantity}</div>
-      <button type="button" onClick={onIncrement} className="counter-button">
+      <div className="quantity" testid="active-count">
+        {quantity}
+      </div>
+      <button
+        type="button"
+        onClick={onIncrement}
+        className="counter-button"
+        testid="increment-count"
+      >
         +
       </button>
     </div>

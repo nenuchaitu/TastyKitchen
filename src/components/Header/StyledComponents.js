@@ -84,4 +84,14 @@ export const NavMenUButton = styled.button`
   background-color: transparent;
   cursor: pointer;
   border: none;
+  text-decoration: none;
+  font-family: DM Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 26px;
+  text-align: left;
+  color: ${props => (props.selected ? '#f7931e' : '#334155')};
+  margin-right: 10px;
+  cursor: pointer;
 `

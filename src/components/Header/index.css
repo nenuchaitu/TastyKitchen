@@ -1,18 +1,7 @@
 .link-item {
   text-decoration: none;
 }
-.link-item-mobile {
-  text-decoration: none;
-  font-family: DM Sans;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 26px;
-  text-align: left;
-  color: #334155;
-  margin-right: 10px;
-  cursor: pointer;
-}
+
 .ham-menu {
   cursor: pointer;
   color: #231f20;
@@ -24,22 +13,7 @@
     display: none;
   }
 }
-.link-item-large {
-  text-decoration: none;
-  font-family: DM Sans;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 26px;
-  text-align: left;
-  color: #334155;
-  margin-right: 10px;
-  cursor: pointer;
-}
 
-.selected {
-  color: #f7931e;
-}
 .close-button {
   color: #334155;
   width: 20px;

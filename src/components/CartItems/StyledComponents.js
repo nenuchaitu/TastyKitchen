@@ -11,7 +11,7 @@ export const CartListItem = styled.li`
 export const ImageItemContainer = styled.div`
   display: flex;
   align-items: center;
-  width: 50%;
+  flex: 1 1 auto;
 `
 export const CartItemImage = styled.img`
   min-width: 136px;
@@ -19,7 +19,7 @@ export const CartItemImage = styled.img`
   max-height: 136px;
 `
 export const CartItemName = styled.p`
-  font-family: DM Sans;
+  font-family: 'DM Sans';
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
@@ -30,12 +30,12 @@ export const CartItemName = styled.p`
 `
 export const CartNameContainer = styled.div``
 export const CartItemCostAndCounterContainer = styled.div`
-  width: 50%;
+  width: 47%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-right: 60px;
-  @media screen and (max-width: 576px) {
+  @media screen and (max-width: 767px) {
     display: none;
   }
 `
@@ -47,12 +47,12 @@ export const CartItemCostAndCounterMobileContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   margin-left: 24px;
-  @media screen and (min-width: 577px) {
+  @media screen and (min-width: 768px) {
     display: none;
   }
 `
 export const ItemCost = styled.p`
-  font-family: DM Sans;
+  font-family: 'DM Sans';
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
