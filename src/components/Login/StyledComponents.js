@@ -7,7 +7,6 @@ export const LoginPageContainer = styled.div`
   align-items: center;
   min-height: 100vh;
   background-color: #fefeff;
-
   @media screen and (min-width: 576px) {
     flex-direction: row;
   }

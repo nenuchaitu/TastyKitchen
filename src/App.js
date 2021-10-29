@@ -9,7 +9,6 @@ import Cart from './components/Cart'
 import RestaurantDetailedView from './components/RestaurantDetailedView'
 import NotFound from './components/NotFound'
 import CartContext from './context/CartContext'
-import Profile from './components/Profile'
 
 import './App.css'
 
@@ -34,6 +33,8 @@ class App extends Component {
     const cartData = JSON.parse(cartListString)
     if (cartData !== null) {
       this.setState({cartList: cartData})
+    } else {
+      localStorage.setItem('cartData', JSON.stringify([]))
     }
   }
 
@@ -140,7 +141,6 @@ class App extends Component {
               />
             )}
           />
-          <ProtectedRoute exact path="/profile" component={Profile} />
           <ProtectedRoute
             exact
             path="/"

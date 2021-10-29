@@ -15,7 +15,7 @@ export const ImageItemContainer = styled.div`
 `
 export const CartItemImage = styled.img`
   min-width: 136px;
-  max-width: 150px;
+  width: 150px;
   max-height: 136px;
 `
 export const CartItemName = styled.p`

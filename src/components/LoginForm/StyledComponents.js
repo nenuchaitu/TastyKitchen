@@ -84,7 +84,7 @@ export const LogoContainer = styled.div`
   }
 `
 export const LoginHeading = styled.div`
-  font-family: DM Sans;
+  font-family: 'DM Sans';
   font-size: 24px;
   color: #0f172a;
   font-family: 'DM Sans';

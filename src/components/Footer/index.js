@@ -1,49 +1,42 @@
 import {
-  AiOutlineTwitter,
-  AiFillFacebook,
-  AiOutlineInstagram,
-} from 'react-icons/ai'
-import {FaPinterestSquare} from 'react-icons/fa'
+  FaPinterestSquare,
+  FaInstagram,
+  FaTwitter,
+  FaFacebookSquare,
+} from 'react-icons/fa'
 
 import WebFooterLogo from '../Img/Footer/WebFooterLogo.png'
-
-import {
-  FooterLogo,
-  FooterContainer,
-  FooterLogoContainer,
-  FooterLogoText,
-  FooterTagLine,
-  FooterTagSpan,
-  SocialMediaIconsContainer,
-} from './StyledComponents'
 
 import './index.css'
 
 const Footer = () => (
-  <FooterContainer>
-    <FooterLogoContainer>
-      <FooterLogo src={WebFooterLogo} alt="website-footer-logo" />
-      <FooterLogoText>Tasty Kitchens</FooterLogoText>
-    </FooterLogoContainer>
-    <FooterTagLine>
-      The only thing we are serious about is food.{' '}
-      <FooterTagSpan>Contact us on </FooterTagSpan>
-    </FooterTagLine>
-    <SocialMediaIconsContainer>
-      <FaPinterestSquare className="icons" testid="pintrest-social-icon" />
-      <AiOutlineInstagram
-        className="icons icons-spacing"
-        testid="instagram-social-icon"
+  <div className="footer-container">
+    <div className="footer-logo-container">
+      <img
+        className="footer-logo"
+        src={WebFooterLogo}
+        alt="website-footer-logo"
       />
-      <AiOutlineTwitter
+      <h1 className="footer-logo-text">Tasty Kitchens</h1>
+    </div>
+    <p className="footer-tag-line">
+      The only thing we are serious about is food. Contact us on
+    </p>
+    <div className="social-media-icons-container">
+      <FaPinterestSquare className="icons" data-testid="pintrest-social-icon" />
+      <FaInstagram
         className="icons icons-spacing"
-        testid="twitter-social-icon"
+        data-testid="instagram-social-icon"
       />
-      <AiFillFacebook
+      <FaTwitter
         className="icons icons-spacing"
-        testid="facebook-social-icon"
+        data-testid="twitter-social-icon"
       />
-    </SocialMediaIconsContainer>
-  </FooterContainer>
+      <FaFacebookSquare
+        className="icons icons-spacing"
+        data-testid="facebook-social-icon"
+      />
+    </div>
+  </div>
 )
 export default Footer

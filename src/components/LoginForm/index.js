@@ -2,18 +2,8 @@ import {withRouter} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import {useState} from 'react'
 import WebsiteLogo from '../Img/Login/WebsiteLogo.png'
-import {
-  Form,
-  LoginWebLogo,
-  InputContainer,
-  InputLabel,
-  InputField,
-  ErrorMessage,
-  LoginButton,
-  FormHeading,
-  LogoContainer,
-  LoginHeading,
-} from './StyledComponents'
+
+import './index.css'
 
 const LoginForm = props => {
   const [username, setUsername] = useState()
@@ -22,9 +12,12 @@ const LoginForm = props => {
   const [errorMessage, setErrorMessage] = useState()
 
   const renderUsername = () => (
-    <InputContainer>
-      <InputLabel htmlFor="username">USERNAME</InputLabel>
-      <InputField
+    <div className="input-container">
+      <label className="input-label" htmlFor="username">
+        USERNAME
+      </label>
+      <input
+        className="input-field"
         type="text"
         id="username"
         value={username}
@@ -33,13 +26,16 @@ const LoginForm = props => {
         }}
         placeholder="Username"
       />
-    </InputContainer>
+    </div>
   )
 
   const renderPassword = () => (
-    <InputContainer>
-      <InputLabel htmlFor="password">PASSWORD</InputLabel>
-      <InputField
+    <div className="input-container">
+      <label className="input-label" htmlFor="password">
+        PASSWORD
+      </label>
+      <input
+        className="input-field"
         type="password"
         id="password"
         value={password}
@@ -48,7 +44,7 @@ const LoginForm = props => {
         }}
         placeholder="password"
       />
-    </InputContainer>
+    </div>
   )
 
   const onSubmitSuccess = jwtToken => {
@@ -71,27 +67,33 @@ const LoginForm = props => {
       method: 'POST',
       body: JSON.stringify(userDetails),
     }
-    const response = await fetch(url, options)
-    const data = await response.json()
-    if (response.ok === true) {
-      onSubmitSuccess(data.jwt_token)
-    } else {
-      onSubmitFailure(data.error_msg)
+    try {
+      const response = await fetch(url, options)
+      const data = await response.json()
+      if (response.ok === true) {
+        onSubmitSuccess(data.jwt_token)
+      } else {
+        onSubmitFailure(data.error_msg)
+      }
+    } catch (err) {
+      console.log(err)
     }
   }
 
   return (
-    <Form onSubmit={submitForm}>
-      <LogoContainer>
-        <LoginWebLogo src={WebsiteLogo} alt="website logo" />
-        <FormHeading>Tasty Kitchen</FormHeading>
-      </LogoContainer>
-      <LoginHeading>Login</LoginHeading>
+    <form className="login-form" onSubmit={submitForm}>
+      <div className="logo-container">
+        <img className="login-web-logo" src={WebsiteLogo} alt="website logo" />
+        <h1 className="form-heading-logo">Tasty Kitchens</h1>
+      </div>
+      <h1 className="login-heading">Login</h1>
       {renderUsername()}
       {renderPassword()}
-      {submitError ? <ErrorMessage>{errorMessage}</ErrorMessage> : ''}
-      <LoginButton type="submit">Login</LoginButton>
-    </Form>
+      {submitError ? <p className="error-message">{errorMessage}</p> : ''}
+      <button className="login-button" type="submit">
+        Login
+      </button>
+    </form>
   )
 }
 export default withRouter(LoginForm)

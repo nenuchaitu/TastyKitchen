@@ -1,4 +1,4 @@
-import {ErrorViewContainer, FailureImage, RetryButton} from './StyledComponents'
+import './index.css'
 
 const FailureView = props => {
   const {getRestaurantList} = props
@@ -9,15 +9,16 @@ const FailureView = props => {
 
   return (
     <>
-      <ErrorViewContainer>
-        <FailureImage
+      <div className="error-view-container">
+        <img
+          className="failure-image"
           src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
           alt="data fetch failure"
         />
-        <RetryButton type="button" onClick={onClickRetry}>
+        <button className="retry-button" type="button" onClick={onClickRetry}>
           Retry
-        </RetryButton>
-      </ErrorViewContainer>
+        </button>
+      </div>
     </>
   )
 }

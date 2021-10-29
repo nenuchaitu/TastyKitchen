@@ -1,6 +1,6 @@
 import {Component} from 'react'
 
-import {withRouter} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 import CartContext from '../../context/CartContext'
 
@@ -11,15 +11,7 @@ import Footer from '../Footer'
 import CartListView from '../CartListView'
 import PaymentView from '../PaymentView'
 
-import {
-  EmptyCartContainer,
-  NoOrdersImage,
-  NoOrdersHeading,
-  NoOrdersText,
-  OrderNowButton,
-  OrderNowButtonContainer,
-  CartViewContainer,
-} from './StyledComponents'
+import './index.css'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -52,24 +44,26 @@ class Cart extends Component {
       <CartContext.Consumer>
         {value => {
           const {cartList} = value
-          const redirectToHome = () => {
-            const {history} = this.props
-            history.replace('/')
-          }
 
           const renderEmptyCartView = () => (
-            <EmptyCartContainer>
-              <NoOrdersImage alt="empty cart" src={noOrdersYet} />
-              <NoOrdersHeading>No Orders Yet!</NoOrdersHeading>
-              <NoOrdersText>
+            <div className="empty-cart-container">
+              <img
+                className="no-orders-image"
+                alt="empty cart"
+                src={noOrdersYet}
+              />
+              <h1 className="no-orders-heading">No Order Yet!</h1>
+              <p className="no-orders-text">
                 Your cart is empty. Add something from the menu.
-              </NoOrdersText>
-              <OrderNowButtonContainer>
-                <OrderNowButton type="button" onClick={redirectToHome}>
-                  Order Now
-                </OrderNowButton>
-              </OrderNowButtonContainer>
-            </EmptyCartContainer>
+              </p>
+              <div className="order-now-button-container">
+                <Link to="/" className="home-redirect">
+                  <button className="order-now-button" type="button">
+                    Order Now
+                  </button>
+                </Link>
+              </div>
+            </div>
           )
 
           const renderCartListView = () => (
@@ -101,7 +95,7 @@ class Cart extends Component {
           return (
             <>
               <Header />
-              <CartViewContainer>{renderCartView()}</CartViewContainer>
+              <div className="cart-view-container">{renderCartView()}</div>
               <Footer />
             </>
           )
@@ -111,4 +105,4 @@ class Cart extends Component {
   }
 }
 
-export default withRouter(Cart)
+export default Cart

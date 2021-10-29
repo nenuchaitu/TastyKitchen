@@ -4,16 +4,7 @@ import CartContext from '../../context/CartContext'
 
 import Counter from '../Counter'
 
-import {
-  CartListItem,
-  ImageItemContainer,
-  CartItemImage,
-  ItemCost,
-  CartItemCostAndCounterContainer,
-  CartItemCostAndCounterMobileContainer,
-  CartItemName,
-  CartNameContainer,
-} from './StyledComponents'
+import './index.css'
 
 class CartItems extends Component {
   state = {quantity: 0}
@@ -50,30 +41,44 @@ class CartItems extends Component {
             updateTotal(-1 * cartItemDetails.cost)
           }
           return (
-            <CartListItem>
-              <ImageItemContainer>
-                <CartItemImage src={imageUrl} alt="foodItem" />
-                <CartNameContainer>
-                  <CartItemName>{name}</CartItemName>
-                  <CartItemCostAndCounterMobileContainer>
+            <li className="cart-list-item" data-testid="cartItem">
+              <div className="image-item-container">
+                <img
+                  className="cart-item-image"
+                  src={imageUrl}
+                  alt="foodItem"
+                />
+                <div>
+                  <h1 className="cart-item-name">{name}</h1>
+                  <div className="cart-item-cost-and-counter-mobile-container">
                     <Counter
                       incrementQuantity={incrementQuantity}
                       decrementQuantity={decrementQuantity}
                       quantity={quantity}
+                      testId={{
+                        increment: 'increment-quantity',
+                        decrement: 'decrement-quantity',
+                        quantity: 'item-quantity',
+                      }}
                     />
-                    <ItemCost>{cost * quantity}</ItemCost>
-                  </CartItemCostAndCounterMobileContainer>
-                </CartNameContainer>
-              </ImageItemContainer>
-              <CartItemCostAndCounterContainer>
+                    <p className="item-cost">{cost * quantity}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="cart-item-cost-and-counter-container">
                 <Counter
                   incrementQuantity={incrementQuantity}
                   decrementQuantity={decrementQuantity}
                   quantity={quantity}
+                  testId={{
+                    increment: 'increment-quantity',
+                    decrement: 'decrement-quantity',
+                    quantity: 'item-quantity',
+                  }}
                 />
-                <ItemCost>{cost * quantity}</ItemCost>
-              </CartItemCostAndCounterContainer>
-            </CartListItem>
+                <p className="item-cost">{cost * quantity}</p>
+              </div>
+            </li>
           )
         }}
       </CartContext.Consumer>

@@ -18,23 +18,7 @@ import Footer from '../Footer'
 
 import RestaurantItem from '../RestaurantItem'
 
-import {
-  RestaurantList,
-  PopularHeading,
-  HomeBodyContainer,
-  RestaurantListContainer,
-  FilterContainer,
-  TagLine,
-  OptionsContainer,
-  SortBy,
-  Option,
-  LoadingViewContainer,
-  Separator,
-  NavigationButton,
-  PaginationContainer,
-  PageIndicator,
-  RestaurantSearch,
-} from './StyledComponents'
+import './index.css'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -50,12 +34,12 @@ class Home extends Component {
     activeOption: '',
     restaurantList: [],
     activePageNumber: 1,
-    totalNumberOfRestaurants: '',
+    totalNumberOfRestaurants: 0,
     searchInput: '',
   }
 
   componentDidMount() {
-    this.setData()
+    this.setOffers()
     const {sortByOptions} = this.props
     this.setState(
       {activeOption: sortByOptions[1].value},
@@ -63,7 +47,8 @@ class Home extends Component {
     )
   }
 
-  setData = async () => {
+  setOffers = async () => {
+    this.setState({apiStatus: apiStatusConstants.inProgress})
     const {sortByOptions} = this.props
     const offersUrl = 'https://apis.ccbp.in/restaurants-list/offers'
     const jwtToken = Cookies.get('jwt_token')
@@ -95,9 +80,9 @@ class Home extends Component {
   }
 
   renderLoadingView = () => (
-    <LoadingViewContainer>
+    <div className="loading-view-container">
       <Loader type="TailSpin" color="#FFCC00" height="50" width="50" />
-    </LoadingViewContainer>
+    </div>
   )
 
   renderFilter = () => {
@@ -105,30 +90,35 @@ class Home extends Component {
     const {sortByOptions} = this.props
     return (
       <>
-        <FilterContainer>
-          <TagLine>
+        <div className="filter-container">
+          <p className="tag-line">
             Select Your favourite restaurant special dish and make your day
             happy...
-          </TagLine>
-          <OptionsContainer>
+          </p>
+          <div className="options-container">
             <BsFilterLeft />
-            <SortBy value={activeOption} onChange={this.setActiveOption}>
+            <select
+              className="sort-by-select"
+              value={activeOption}
+              onChange={this.setActiveOption}
+            >
               {sortByOptions.map(options => {
                 const isActive = activeOption === options.value
                 return (
-                  <Option
+                  <option
+                    className="option-select"
                     value={options.value}
                     key={options.id}
                     isActive={isActive}
                   >
                     Sort by {options.value}
-                  </Option>
+                  </option>
                 )
               })}
-            </SortBy>
-          </OptionsContainer>
-        </FilterContainer>
-        <Separator />
+            </select>
+          </div>
+        </div>
+        <hr className="home-filter-restaurant-separator" />
       </>
     )
   }
@@ -216,17 +206,27 @@ class Home extends Component {
   renderPagination = () => {
     const {activePageNumber, totalNumberOfRestaurants} = this.state
     return (
-      <PaginationContainer>
-        <NavigationButton type="button" onClick={this.previousPage}>
+      <div className="pagination-container">
+        <button
+          className="navigation-button"
+          type="button"
+          onClick={this.previousPage}
+          data-testid="pagination-left-button"
+        >
           <GrFormPrevious />
-        </NavigationButton>
-        <PageIndicator>
+        </button>
+        <p className="page-indicator" data-testid="active-page-number">
           {activePageNumber} of {Math.ceil(totalNumberOfRestaurants / 9)}
-        </PageIndicator>
-        <NavigationButton type="button" onClick={this.nextPage}>
+        </p>
+        <button
+          className="navigation-button"
+          type="button"
+          onClick={this.nextPage}
+          data-testid="pagination-right-button"
+        >
           <GrFormNext />
-        </NavigationButton>
-      </PaginationContainer>
+        </button>
+      </div>
     )
   }
 
@@ -238,24 +238,25 @@ class Home extends Component {
     const {restaurantList, searchInput} = this.state
     return (
       <>
-        <RestaurantListContainer>
-          <PopularHeading>Popular Restaurants</PopularHeading>
+        <div className="restaurant-list-container">
+          <h1 className="popular-heading">Popular Restaurants</h1>
           {this.renderFilter()}
-          <RestaurantSearch
+          <input
+            className="restaurant-search"
             type="search"
             onChange={this.setSearchInput}
             value={searchInput}
             placeholder="Search for a Restaurant..."
           />
-          <RestaurantList>
+          <ul className="restaurant-list">
             {restaurantList.map(restaurant => (
               <RestaurantItem
                 restaurantDetails={restaurant}
                 key={restaurant.id}
               />
             ))}
-          </RestaurantList>
-        </RestaurantListContainer>
+          </ul>
+        </div>
         {this.renderPagination()}
       </>
     )
@@ -280,10 +281,13 @@ class Home extends Component {
     return (
       <>
         <Header />
-        <HomeBodyContainer>
+        <div
+          className="home-body-container"
+          data-testid="restaurants-list-loader"
+        >
           <Banner offers={offers} />
           {this.renderApiView()}
-        </HomeBodyContainer>
+        </div>
         <Footer />
       </>
     )

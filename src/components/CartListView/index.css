@@ -1,34 +1,38 @@
-import styled from 'styled-components'
-
-export const CartListContainerLarge = styled.div`
+.cart-list-container-large {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   width: 80%;
   overflow: hidden;
-  @media screen and (min-width: 567px) {
+}
+@media screen and (min-width: 577px) {
+  .cart-list-container-large {
     justify-content: space-between;
   }
-  @media screen and (min-width: 768px) {
+}
+@media screen and (min-width: 768px) {
+  .cart-list-container-large {
     background-color: #f9fbfe;
     border: 1px solid #0b69ff1a;
     margin-top: 48px;
     margin-bottom: 64px;
     padding: 38px 0px 48px 0px;
   }
-`
-export const CartIndexContainer = styled.div`
+}
+.cart-index-container {
   display: flex;
   justify-content: space-between;
   width: 75%;
   align-items: center;
   flex: 1 1 auto;
-  @media screen and (max-width: 767px) {
+}
+@media screen and (max-width: 577px) {
+  .cart-index-container {
     display: none;
   }
-`
-export const CartIndexHeading = styled.h1`
+}
+.cart-index-heading {
   font-family: 'DM Sans';
   font-size: 20px;
   font-style: normal;
@@ -36,38 +40,41 @@ export const CartIndexHeading = styled.h1`
   line-height: 24px;
   letter-spacing: 0.2;
   text-align: left;
-`
-export const CartHorizontalLine = styled.hr`
+}
+.cart-horizontal-line {
   border: 1px dotted #cbd2d9;
   width: 95%;
-  @media screen and (min-width: 577px) {
+  margin-bottom: 24px;
+}
+@media screen and (min-width: 577px) {
+  .cart-horizontal-line {
     margin-left: 48px;
-    margin-bottom: 24px;
   }
-`
-export const OrderTotalContainer = styled.div`
+}
+.order-total-container {
   width: 85%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-`
-export const CartItemsList = styled.ul`
+}
+.cart-items-list {
   width: 85%;
   margin-left: 0px;
   padding-left: 0px;
   list-style: none;
-`
-export const PlaceOrderButtonContainer = styled.div`
+}
+.place-order-button-container {
   margin-left: auto;
   margin-top: 24px;
   margin-bottom: 48px;
-  @media screen and (min-width: 577px) {
+}
+@media screen and (min-width: 577px) {
+  .place-order-button-container {
     margin-top: 32px;
     margin-right: 60px;
   }
-`
-
-export const CartPlaceOrderButton = styled.button`
+}
+.cart-place-order-button {
   height: 32px;
   width: 99px;
   border-radius: 8px;
@@ -83,4 +90,4 @@ export const CartPlaceOrderButton = styled.button`
   font-weight: 500;
   line-height: 16px;
   letter-spacing: 0em;
-`
+}

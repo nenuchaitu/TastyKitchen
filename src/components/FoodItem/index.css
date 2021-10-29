@@ -1,0 +1,113 @@
+.food-item-details-card {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  justify-content: flex-start;
+  height: 150px;
+  width: 330px;
+  max-width: 330px;
+}
+@media screen and (min-width: 577px) {
+  .food-item-details-card {
+    margin-left: 0px;
+  }
+}
+.food-item-image {
+  height: 100px;
+  width: 160px;
+  border-radius: 8px;
+  margin-top: 24px;
+}
+@media screen and (min-width: 577px) {
+  .food-item-image {
+    margin-left: 30px;
+    max-height: 150px;
+  }
+}
+.food-item-text-details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: 16px;
+  max-height: 100px;
+}
+@media screen and (min-width: 577px) {
+  .food-item-text-details-container {
+    margin-left: 30px;
+  }
+}
+.food-item-name {
+  display: flex;
+  align-items: center;
+  color: #334155;
+  font-weight: 500;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.food-price-text {
+  font-family: 'DM Sans';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #334155;
+}
+@media screen and (min-width: 577px) {
+  .food-price-text {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+.rating-cost-container {
+  display: flex;
+  align-items: center;
+  height: 25px;
+  margin-top: 3px;
+}
+.rating-value {
+  font-family: DM Sans;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: 0px;
+  text-align: left;
+  margin-left: 7px;
+}
+@media screen and (min-width: 577px) {
+  .rating-value {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+.add-button {
+  height: 24px;
+  width: 43px;
+  border-radius: 6;
+  font-family: 'Inter';
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 12px;
+  letter-spacing: 0em;
+  padding: 6px, 12px, 6px, 12px;
+  color: #ffa412;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  border: 1px solid #ffa412;
+  border-radius: 4px;
+}
+@media screen and (min-width: 577px) {
+  .add-button {
+    height: 32px;
+    width: 58px;
+    font-size: 12px;
+    line-height: 16px;
+    padding: 8px, 16px, 8px, 16px;
+    border-radius: 6px;
+  }
+}

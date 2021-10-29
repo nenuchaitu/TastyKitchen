@@ -1,33 +1,22 @@
-import {withRouter} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 import success from '../Img/PaymentView/success.png'
 
-import {
-  PaymentSuccessContainer,
-  PaymentSuccessImage,
-  PaymentSuccessHeading,
-  PaymentSuccessText,
-  GoHomeButton,
-} from './StyledComponents'
+import './index.css'
 
-const PaymentView = props => {
-  const redirectToHome = () => {
-    const {history, setPaymentStatus} = props
-    history.replace('/')
-    setPaymentStatus()
-  }
-
-  return (
-    <PaymentSuccessContainer>
-      <PaymentSuccessImage src={success} alt="success" />
-      <PaymentSuccessHeading>Payment Successful</PaymentSuccessHeading>
-      <PaymentSuccessText>
-        Thank you for ordering Your payment is successfully completed.
-      </PaymentSuccessText>
-      <GoHomeButton type="button" onClick={redirectToHome}>
+const PaymentView = () => (
+  <div className="payment-success-container">
+    <img className="payment-success-image" src={success} alt="success" />
+    <h1 className="payment-success-heading">Payment Successful</h1>
+    <p className="payment-success-text">
+      Thank you for ordering Your payment is successfully completed.
+    </p>
+    <Link to="/">
+      <button className="go-home-button" type="button">
         Go To Home Page
-      </GoHomeButton>
-    </PaymentSuccessContainer>
-  )
-}
-export default withRouter(PaymentView)
+      </button>
+    </Link>
+  </div>
+)
+
+export default PaymentView

@@ -2,16 +2,7 @@ import {Component} from 'react'
 
 import CartItems from '../CartItems'
 
-import {
-  CartListContainerLarge,
-  CartIndexHeading,
-  CartIndexContainer,
-  CartHorizontalLine,
-  OrderTotalContainer,
-  CartItemsList,
-  CartPlaceOrderButton,
-  PlaceOrderButtonContainer,
-} from './StyledComponents'
+import './index.css'
 
 const indexItemsList = [
   {
@@ -29,7 +20,7 @@ const indexItemsList = [
 ]
 
 class CartListView extends Component {
-  state = {total: ''}
+  state = {total: 0}
 
   componentDidMount() {
     this.getTotal()
@@ -55,15 +46,15 @@ class CartListView extends Component {
     const {total} = this.state
     return (
       <>
-        <CartListContainerLarge>
-          <CartIndexContainer>
+        <div className="cart-list-container-large">
+          <div className="cart-index-container">
             {indexItemsList.map(index => (
-              <CartIndexHeading key={index.indexId}>
+              <h1 className="cart-index-heading" key={index.indexId}>
                 {index.displayText}
-              </CartIndexHeading>
+              </h1>
             ))}
-          </CartIndexContainer>
-          <CartItemsList>
+          </div>
+          <ul className="cart-items-list ">
             {cartList.map(cartItem => (
               <CartItems
                 key={cartItem.id}
@@ -71,18 +62,24 @@ class CartListView extends Component {
                 updateTotal={this.updateTotal}
               />
             ))}
-          </CartItemsList>
-          <CartHorizontalLine />
-          <OrderTotalContainer>
-            <CartIndexHeading>Order Total:</CartIndexHeading>
-            <CartIndexHeading>{total}</CartIndexHeading>
-          </OrderTotalContainer>
-          <PlaceOrderButtonContainer>
-            <CartPlaceOrderButton type="button" onClick={setAPIPaymentView}>
+          </ul>
+          <hr className="cart-horizontal-line" />
+          <div className="order-total-container">
+            <h1 className="cart-index-heading">Order Total:</h1>
+            <h1 className="cart-index-heading" data-testid="total-price">
+              {total}
+            </h1>
+          </div>
+          <div className="place-order-button-container">
+            <button
+              className="cart-place-order-button"
+              type="button"
+              onClick={setAPIPaymentView}
+            >
               Place Order
-            </CartPlaceOrderButton>
-          </PlaceOrderButtonContainer>
-        </CartListContainerLarge>
+            </button>
+          </div>
+        </div>
       </>
     )
   }

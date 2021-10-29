@@ -16,23 +16,7 @@ import FailureView from '../FailureView'
 
 import FoodItem from '../FoodItem'
 
-import {
-  LoadingViewContainer,
-  RestaurantDetailsContainer,
-  RestaurantBannerContainer,
-  RestaurantBannerImage,
-  RestaurantTextDetailsContainer,
-  RestaurantName,
-  Address,
-  CuisineType,
-  RatingAndCostContainer,
-  ValueContainer,
-  VerticalLine,
-  ValueText,
-  ForText,
-  ReviewOrCostContainer,
-  FoodItemCardsList,
-} from './StyledComponents'
+import './index.css'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -70,6 +54,7 @@ class RestaurantDetailedView extends Component {
   })
 
   getRestaurant = async () => {
+    this.setState({apiStatus: apiStatusConstants.inProgress})
     const {match} = this.props
     const {params} = match
     const {id} = params
@@ -103,47 +88,50 @@ class RestaurantDetailedView extends Component {
 
     return (
       <>
-        <RestaurantBannerContainer>
-          <RestaurantBannerImage
+        <div className="restaurant-banner-container">
+          <img
+            className="restaurant-banner-image"
             src={RestaurantDetails.imageUrl}
             alt="restaurant"
           />
-          <RestaurantTextDetailsContainer>
-            <RestaurantName>{RestaurantDetails.name}</RestaurantName>
-            <CuisineType>{RestaurantDetails.cuisine}</CuisineType>
-            <Address>{RestaurantDetails.location}</Address>
-            <RatingAndCostContainer>
-              <ReviewOrCostContainer>
-                <ValueContainer>
+          <div className="restaurant-text-details-container">
+            <h1 className="restaurant-name">{RestaurantDetails.name}</h1>
+            <p className="cuisine-type">{RestaurantDetails.cuisine}</p>
+            <p className="address">{RestaurantDetails.location}</p>
+            <div className="rating-and-cost-container">
+              <div className="review-or-cost-container">
+                <div className="value-container">
                   <AiFillStar color="#fff" />
-                  <ValueText>{RestaurantDetails.rating}</ValueText>
-                </ValueContainer>
-                <ForText>{RestaurantDetails.reviewsCount}+ Ratings</ForText>
-              </ReviewOrCostContainer>
-              <VerticalLine>|</VerticalLine>
-              <ReviewOrCostContainer>
-                <ValueContainer>
+                  <p className="value-text">{RestaurantDetails.rating}</p>
+                </div>
+                <p className="for-two-or-rating-text">
+                  {RestaurantDetails.reviewsCount} + Ratings
+                </p>
+              </div>
+              <p className="vertical-line">|</p>
+              <div className="review-or-cost-container">
+                <div className="value-container">
                   <BiRupee color="#fff" />
-                  <ValueText>{RestaurantDetails.costForTwo}</ValueText>
-                </ValueContainer>
-                <ForText>Cost for Two</ForText>
-              </ReviewOrCostContainer>
-            </RatingAndCostContainer>
-          </RestaurantTextDetailsContainer>
-        </RestaurantBannerContainer>
-        <FoodItemCardsList>
+                  <p className="value-text">{RestaurantDetails.costForTwo}</p>
+                </div>
+                <p className="for-two-or-rating-text">Cost for Two</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ul className="food-item-cards-list">
           {RestaurantDetails.foodItems.map(eachItem => (
             <FoodItem key={eachItem.id} FoodItemDetails={eachItem} />
           ))}
-        </FoodItemCardsList>
+        </ul>
       </>
     )
   }
 
   renderLoadingView = () => (
-    <LoadingViewContainer>
+    <div className="loading-view-container">
       <Loader type="TailSpin" color="#FFCC00" height="50" width="50" />
-    </LoadingViewContainer>
+    </div>
   )
 
   renderApiView = () => {
@@ -164,10 +152,11 @@ class RestaurantDetailedView extends Component {
     return (
       <>
         <Header />
-        <div testid="restaurant-details-loader">
-          <RestaurantDetailsContainer>
-            {this.renderApiView()}
-          </RestaurantDetailsContainer>
+        <div
+          className="restaurant-details-container"
+          data-testid="restaurant-details-loader"
+        >
+          {this.renderApiView()}
         </div>
         <Footer />
       </>

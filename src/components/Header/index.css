@@ -19,3 +19,118 @@
   width: 20px;
   height: 20px;
 }
+.nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8fafc;
+}
+@media screen and (min-width: 576px) {
+  .nav-header {
+    padding: 15px 80px 15px 80px;
+  }
+}
+@media screen and (min-width: 962px) {
+  .nav-header {
+    padding: 15px 140px 15px 140px;
+  }
+}
+.header-web-logo {
+  width: 39px;
+  height: 32px;
+}
+@media screen and (min-width: 576px) {
+  .header-web-logo {
+    width: 49px;
+    height: 39px;
+  }
+}
+.header-heading {
+  font-family: 'DM Sans';
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #f7931e;
+  margin-left: 10px;
+}
+@media screen and (min-width: 576px) {
+  .header-heading {
+    font-size: 18px;
+    font-weight: 400;
+  }
+}
+.header-logo-container {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+}
+.mobile-menu-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 30px 10px 30px;
+  margin-top: 20px;
+}
+@media screen and (min-width: 576px) {
+  .mobile-menu-container {
+    display: none;
+  }
+}
+.mobile-options-container {
+  display: flex;
+  align-items: center;
+  margin-left: 0px;
+  padding-left: 0px;
+  list-style: none;
+}
+.large-screen-options-container {
+  display: flex;
+  align-items: center;
+  margin-left: 0px;
+  padding-left: 0px;
+  list-style: none;
+}
+@media screen and (max-width: 576px) {
+  .large-screen-options-container {
+    display: none;
+  }
+}
+.logout-button {
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  padding: 8px, 16px, 8px, 16px;
+  background-color: #f7931e;
+  color: #fff;
+  font-family: 'Inter';
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+  outline: none;
+  cursor: pointer;
+}
+.nav-menu-button {
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  font-family: DM Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 26px;
+  text-align: left;
+  color: #334155;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.selected {
+  color: #f7931e;
+}

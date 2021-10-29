@@ -1,7 +1,7 @@
 import './index.css'
 
 const Counter = props => {
-  const {quantity, incrementQuantity, decrementQuantity} = props
+  const {quantity, incrementQuantity, decrementQuantity, testId} = props
 
   const onDecrement = () => {
     decrementQuantity()
@@ -17,18 +17,18 @@ const Counter = props => {
         type="button"
         onClick={onDecrement}
         className="counter-button"
-        testid="decrement-count"
+        data-testid={testId.decrement}
       >
         -
       </button>
-      <div className="quantity" testid="active-count">
+      <p className="quantity" data-testid={testId.quantity}>
         {quantity}
-      </div>
+      </p>
       <button
         type="button"
         onClick={onIncrement}
         className="counter-button"
-        testid="increment-count"
+        data-testid={testId.increment}
       >
         +
       </button>

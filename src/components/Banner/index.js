@@ -1,11 +1,6 @@
 import {Component} from 'react'
 import Slider from 'react-slick'
-
-import {
-  ImageContainer,
-  SliderImage,
-  RestaurantsOffersLoader,
-} from './StyledComponents'
+import './index.css'
 
 class Banner extends Component {
   render() {
@@ -16,15 +11,18 @@ class Banner extends Component {
       autoplaySpeed: 3000,
     }
     return (
-      <RestaurantsOffersLoader>
+      <div
+        className="restaurants-offer-loader"
+        data-testid="restaurants-offers-loader"
+      >
         <Slider {...settings}>
           {offers.map(offer => (
-            <ImageContainer key={offer.id}>
-              <SliderImage src={offer.imageUrl} alt="offer" />
-            </ImageContainer>
+            <div key={offer.id} className="image-container">
+              <img src={offer.imageUrl} alt="offer" className="slider-image" />
+            </div>
           ))}
         </Slider>
-      </RestaurantsOffersLoader>
+      </div>
     )
   }
 }

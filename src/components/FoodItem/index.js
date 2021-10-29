@@ -5,19 +5,9 @@ import {BiRupee} from 'react-icons/bi'
 
 import Counter from '../Counter'
 
-import {
-  FoodItemDetailsCard,
-  FoodItemImage,
-  FoodItemTextDetailsContainer,
-  FoodItemName,
-  FoodCostContainer,
-  FoodPriceText,
-  RatingContainer,
-  RatingValue,
-  AddButton,
-} from './StyledComponents'
-
 import CartContext from '../../context/CartContext'
+
+import './index.css'
 
 class FoodItem extends Component {
   state = {quantity: 0}
@@ -67,31 +57,44 @@ class FoodItem extends Component {
           }
 
           return (
-            <FoodItemDetailsCard>
-              <FoodItemImage src={FoodItemDetails.imageUrl} alt="food item" />
-              <FoodItemTextDetailsContainer>
-                <FoodItemName>{FoodItemDetails.name}</FoodItemName>
-                <FoodCostContainer>
+            <li className="food-item-details-card" testid="foodItem">
+              <img
+                className="food-item-image"
+                src={FoodItemDetails.imageUrl}
+                alt="food item"
+              />
+              <div className="food-item-text-details-container">
+                <p className="food-item-name">{FoodItemDetails.name}</p>
+                <div className="rating-cost-container">
                   <BiRupee color="#334155" />
-                  <FoodPriceText>{FoodItemDetails.cost}</FoodPriceText>
-                </FoodCostContainer>
-                <RatingContainer>
+                  <p className="food-price-text">{FoodItemDetails.cost}</p>
+                </div>
+                <div className="rating-cost-container">
                   <AiFillStar color="#FFCC00" />
-                  <RatingValue>{FoodItemDetails.rating}</RatingValue>
-                </RatingContainer>
+                  <p className="rating-value">{FoodItemDetails.rating}</p>
+                </div>
                 {quantity === 0 ? (
-                  <AddButton type="button" onClick={onClickAddToCart}>
+                  <button
+                    className="add-button"
+                    type="button"
+                    onClick={onClickAddToCart}
+                  >
                     Add
-                  </AddButton>
+                  </button>
                 ) : (
                   <Counter
                     quantity={quantity}
                     incrementQuantity={incrementQuantity}
                     decrementQuantity={decrementQuantity}
+                    testId={{
+                      increment: 'increment-count',
+                      decrement: 'decrement-count',
+                      quantity: 'active-count',
+                    }}
                   />
                 )}
-              </FoodItemTextDetailsContainer>
-            </FoodItemDetailsCard>
+              </div>
+            </li>
           )
         }}
       </CartContext.Consumer>

@@ -1,12 +1,4 @@
-import {
-  NotFoundContainer,
-  NotFoundImage,
-  NotFoundHeading,
-  NotFoundText,
-  HomeButton,
-  NotFoundView,
-  HomeButtonContainer,
-} from './StyledComponents'
+import './index.css'
 
 import notFoundViewImage from '../Img/NotFound/notFoundViewImage.png'
 
@@ -17,21 +9,29 @@ const NotFound = props => {
   }
 
   return (
-    <NotFoundContainer>
-      <NotFoundView>
-        <NotFoundImage src={notFoundViewImage} alt="not found" />
-        <NotFoundHeading>Page Not Found</NotFoundHeading>
-        <NotFoundText>
+    <div className="not-found-container">
+      <div className="not-found-view">
+        <img
+          className="not-found-image"
+          src={notFoundViewImage}
+          alt="not found"
+        />
+        <h1 className="not-found-heading">Page Not Found</h1>
+        <p className="not-found-text">
           we are sorry, the page you requested could not be found Please go back
           to the homepage
-        </NotFoundText>
-        <HomeButtonContainer>
-          <HomeButton type="button" onClick={redirectToHome}>
+        </p>
+        <div className="home-button-container">
+          <button
+            className="home-button"
+            type="button"
+            onClick={redirectToHome}
+          >
             Home Page
-          </HomeButton>
-        </HomeButtonContainer>
-      </NotFoundView>
-    </NotFoundContainer>
+          </button>
+        </div>
+      </div>
+    </div>
   )
 }
 export default NotFound

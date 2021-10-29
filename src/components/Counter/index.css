@@ -1,5 +1,7 @@
 .counter-container {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .counter-button {
   background-color: transparent;

@@ -4,34 +4,30 @@ import {AiFillStar} from 'react-icons/ai'
 
 import './index.css'
 
-import {
-  RestaurantListItem,
-  RestaurantImage,
-  DetailsContainer,
-  RestaurantName,
-  CuisineType,
-  RestaurantItemRatingContainer,
-  RestaurantItemRating,
-} from './StyledComponents'
-
 const RestaurantItem = props => {
   const {restaurantDetails} = props
 
   return (
     <Link to={`/restaurant/${restaurantDetails.id}`} className="link-item">
-      <RestaurantListItem>
-        <RestaurantImage src={restaurantDetails.imageUrl} alt="restaurant" />
-        <DetailsContainer>
-          <RestaurantName>{restaurantDetails.name}</RestaurantName>
-          <CuisineType>{restaurantDetails.cuisine}</CuisineType>
-          <RestaurantItemRatingContainer>
+      <li className="restaurant-list-item" data-testid="restaurant-item">
+        <img
+          className="restaurant-image"
+          src={restaurantDetails.imageUrl}
+          alt="restaurant"
+        />
+        <div className="details-container">
+          <p className="restaurant-name-home">{restaurantDetails.name}</p>
+          <p className="restaurant-list-item-cuisine-type">
+            {restaurantDetails.cuisine}
+          </p>
+          <div className="restaurant-item-rating-container">
             <AiFillStar color="#FFCC00" />
-            <RestaurantItemRating>
+            <p className="restaurant-item-rating">
               {restaurantDetails.userRating.rating}
-            </RestaurantItemRating>
-          </RestaurantItemRatingContainer>
-        </DetailsContainer>
-      </RestaurantListItem>
+            </p>
+          </div>
+        </div>
+      </li>
     </Link>
   )
 }
