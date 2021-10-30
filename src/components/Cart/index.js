@@ -2,6 +2,8 @@ import {Component} from 'react'
 
 import {Link} from 'react-router-dom'
 
+import {Loader} from 'react-loader-spinner'
+
 import CartContext from '../../context/CartContext'
 
 import noOrdersYet from '../Img/Cart/noOrdersYet.png'
@@ -17,12 +19,14 @@ const apiStatusConstants = {
   initial: 'INITIAL',
   cartView: 'CART',
   payment: 'PAYMENT',
+  inProgress: 'IN_PROGRESS',
 }
 
 class Cart extends Component {
   state = {apiStatus: apiStatusConstants.initial}
 
   componentDidMount() {
+    this.setState({apiStatus: apiStatusConstants.inProgress})
     const {paymentStatus} = this.props
     if (!paymentStatus) {
       this.setState({apiStatus: apiStatusConstants.cartView})
@@ -32,6 +36,7 @@ class Cart extends Component {
   }
 
   setAPIPaymentView = () => {
+    this.setState({apiStatus: apiStatusConstants.inProgress})
     const {setCartListToEmpty} = this.props
     this.setState({apiStatus: apiStatusConstants.payment})
     const cartList = []
@@ -79,12 +84,20 @@ class Cart extends Component {
             </>
           )
 
+          const renderLoadingView = () => (
+            <div className="loading-view-container">
+              <Loader type="TailSpin" color="#FFCC00" height="50" width="50" />
+            </div>
+          )
+
           const renderCartView = () => {
             const {apiStatus} = this.state
             const {setPaymentStatus} = this.props
             switch (apiStatus) {
               case apiStatusConstants.cartView:
                 return renderCartListView()
+              case apiStatusConstants.inProgress:
+                return renderLoadingView()
               case apiStatusConstants.payment:
                 return <PaymentView setPaymentStatus={setPaymentStatus} />
               default:

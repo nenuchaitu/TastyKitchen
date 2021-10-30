@@ -13,7 +13,7 @@ class Banner extends Component {
     return (
       <div
         className="restaurants-offer-loader"
-        data-testid="restaurants-offers-loader"
+        testid="restaurants-offers-loader"
       >
         <Slider {...settings}>
           {offers.map(offer => (

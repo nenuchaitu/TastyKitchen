@@ -23,18 +23,15 @@ const Footer = () => (
       The only thing we are serious about is food. Contact us on
     </p>
     <div className="social-media-icons-container">
-      <FaPinterestSquare className="icons" data-testid="pintrest-social-icon" />
+      <FaPinterestSquare className="icons" testid="pintrest-social-icon" />
       <FaInstagram
         className="icons icons-spacing"
-        data-testid="instagram-social-icon"
+        testid="instagram-social-icon"
       />
-      <FaTwitter
-        className="icons icons-spacing"
-        data-testid="twitter-social-icon"
-      />
+      <FaTwitter className="icons icons-spacing" testid="twitter-social-icon" />
       <FaFacebookSquare
         className="icons icons-spacing"
-        data-testid="facebook-social-icon"
+        testid="facebook-social-icon"
       />
     </div>
   </div>

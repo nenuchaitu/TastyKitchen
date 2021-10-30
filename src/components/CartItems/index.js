@@ -41,7 +41,7 @@ class CartItems extends Component {
             updateTotal(-1 * cartItemDetails.cost)
           }
           return (
-            <li className="cart-list-item" data-testid="cartItem">
+            <li className="cart-list-item" testid="cartItem">
               <div className="image-item-container">
                 <img
                   className="cart-item-image"

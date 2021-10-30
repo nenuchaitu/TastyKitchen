@@ -211,18 +211,18 @@ class Home extends Component {
           className="navigation-button"
           type="button"
           onClick={this.previousPage}
-          data-testid="pagination-left-button"
+          testid="pagination-left-button"
         >
           <GrFormPrevious />
         </button>
-        <p className="page-indicator" data-testid="active-page-number">
+        <p className="page-indicator" testid="active-page-number">
           {activePageNumber} of {Math.ceil(totalNumberOfRestaurants / 9)}
         </p>
         <button
           className="navigation-button"
           type="button"
           onClick={this.nextPage}
-          data-testid="pagination-right-button"
+          testid="pagination-right-button"
         >
           <GrFormNext />
         </button>
@@ -279,17 +279,14 @@ class Home extends Component {
   render() {
     const {offers} = this.state
     return (
-      <>
+      <div testid="restaurants-list-loader">
         <Header />
-        <div
-          className="home-body-container"
-          data-testid="restaurants-list-loader"
-        >
+        <div className="home-body-container">
           <Banner offers={offers} />
           {this.renderApiView()}
         </div>
         <Footer />
-      </>
+      </div>
     )
   }
 }

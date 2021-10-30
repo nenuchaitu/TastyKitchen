@@ -151,8 +151,8 @@ class App extends Component {
             path="/restaurant/:id"
             component={RestaurantDetailedView}
           />
-          <Route path="/not-found" component={NotFound} />
-          <Redirect to="not-found" />
+          <Route exact path="/bad-path" component={NotFound} />
+          <Redirect to="bad-path" />
         </Switch>
       </CartContext.Provider>
     )

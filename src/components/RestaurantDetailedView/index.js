@@ -154,7 +154,7 @@ class RestaurantDetailedView extends Component {
         <Header />
         <div
           className="restaurant-details-container"
-          data-testid="restaurant-details-loader"
+          testid="restaurant-details-loader"
         >
           {this.renderApiView()}
         </div>

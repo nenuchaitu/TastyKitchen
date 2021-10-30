@@ -66,7 +66,7 @@ class CartListView extends Component {
           <hr className="cart-horizontal-line" />
           <div className="order-total-container">
             <h1 className="cart-index-heading">Order Total:</h1>
-            <h1 className="cart-index-heading" data-testid="total-price">
+            <h1 className="cart-index-heading" testid="total-price">
               {total}
             </h1>
           </div>

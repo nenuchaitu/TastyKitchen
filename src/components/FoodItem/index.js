@@ -64,7 +64,7 @@ class FoodItem extends Component {
                 alt="food item"
               />
               <div className="food-item-text-details-container">
-                <p className="food-item-name">{FoodItemDetails.name}</p>
+                <h1 className="food-item-name">{FoodItemDetails.name}</h1>
                 <div className="rating-cost-container">
                   <BiRupee color="#334155" />
                   <p className="food-price-text">{FoodItemDetails.cost}</p>
