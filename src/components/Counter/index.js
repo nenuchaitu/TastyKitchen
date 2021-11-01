@@ -21,7 +21,7 @@ const Counter = props => {
       >
         -
       </button>
-      <p className="quantity" data-testid={testId.quantity}>
+      <p className="quantity" testid={testId.quantity}>
         {quantity}
       </p>
       <button

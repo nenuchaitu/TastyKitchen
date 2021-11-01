@@ -58,24 +58,21 @@ class Home extends Component {
       },
       method: 'GET',
     }
-    try {
-      const response = await fetch(offersUrl, options)
-      if (response.ok === true) {
-        const data = await response.json()
-        const formattedData = data.offers.map(offer => ({
-          id: offer.id,
-          imageUrl: offer.image_url,
-        }))
-        this.setState({
-          offers: formattedData,
-          activeOption: sortByOptions[1].value,
-          apiStatus: apiStatusConstants.success,
-        })
-      } else {
-        this.setState({apiStatus: apiStatusConstants.failure})
-      }
-    } catch (err) {
-      console.log(err)
+
+    const response = await fetch(offersUrl, options)
+    if (response.ok === true) {
+      const data = await response.json()
+      const formattedData = data.offers.map(offer => ({
+        id: offer.id,
+        imageUrl: offer.image_url,
+      }))
+      this.setState({
+        offers: formattedData,
+        activeOption: sortByOptions[1].value,
+        apiStatus: apiStatusConstants.success,
+      })
+    } else {
+      this.setState({apiStatus: apiStatusConstants.failure})
     }
   }
 
@@ -279,9 +276,9 @@ class Home extends Component {
   render() {
     const {offers} = this.state
     return (
-      <div testid="restaurants-list-loader">
+      <div>
         <Header />
-        <div className="home-body-container">
+        <div className="home-body-container" testid="restaurants-list-loader">
           <Banner offers={offers} />
           {this.renderApiView()}
         </div>

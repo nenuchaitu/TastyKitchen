@@ -66,20 +66,17 @@ class RestaurantDetailedView extends Component {
       },
       method: 'GET',
     }
-    try {
-      const response = await fetch(restaurantDetailsUrl, options)
-      if (response.ok === true) {
-        const data = await response.json()
-        const formattedData = this.getFormattedData(data)
-        this.setState({
-          RestaurantDetails: formattedData,
-          apiStatus: apiStatusConstants.success,
-        })
-      } else {
-        this.setState({apiStatus: apiStatusConstants.failure})
-      }
-    } catch (err) {
-      console.log(err)
+
+    const response = await fetch(restaurantDetailsUrl, options)
+    if (response.ok === true) {
+      const data = await response.json()
+      const formattedData = this.getFormattedData(data)
+      this.setState({
+        RestaurantDetails: formattedData,
+        apiStatus: apiStatusConstants.success,
+      })
+    } else {
+      this.setState({apiStatus: apiStatusConstants.failure})
     }
   }
 
