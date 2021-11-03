@@ -108,7 +108,7 @@ class Home extends Component {
                     key={options.id}
                     isActive={isActive}
                   >
-                    Sort by {options.value}
+                    {options.value}
                   </option>
                 )
               })}
@@ -213,7 +213,11 @@ class Home extends Component {
           <GrFormPrevious />
         </button>
         <p className="page-indicator" testid="active-page-number">
-          {activePageNumber} of {Math.ceil(totalNumberOfRestaurants / 9)}
+          {activePageNumber}
+        </p>
+        <p className="page-indicator">
+          {' '}
+          of {Math.ceil(totalNumberOfRestaurants / 9)}
         </p>
         <button
           className="navigation-button"

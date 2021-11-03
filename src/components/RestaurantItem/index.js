@@ -16,7 +16,7 @@ const RestaurantItem = props => {
           alt="restaurant"
         />
         <div className="details-container">
-          <p className="restaurant-name-home">{restaurantDetails.name}</p>
+          <h1 className="restaurant-name-home">{restaurantDetails.name}</h1>
           <p className="restaurant-list-item-cuisine-type">
             {restaurantDetails.cuisine}
           </p>
