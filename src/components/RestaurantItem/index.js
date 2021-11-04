@@ -25,6 +25,9 @@ const RestaurantItem = props => {
             <p className="restaurant-item-rating">
               {restaurantDetails.userRating.rating}
             </p>
+            <h1 className="restaurant-item-rating-count">
+              ({restaurantDetails.userRating.totalReviews})
+            </h1>
           </div>
         </div>
       </li>

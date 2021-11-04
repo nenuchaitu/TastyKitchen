@@ -30,16 +30,23 @@ class CartItems extends Component {
           const {cartItemDetails, updateTotal} = this.props
           const {name, imageUrl, cost, quantity} = cartItemDetails
           const {incrementCartItemQuantity, decrementCartItemQuantity} = value
-          const incrementQuantity = () => {
-            this.setState(prevState => ({quantity: prevState.quantity + 1}))
+
+          const incrementQuantity = async () => {
+            await this.setState(prevState => ({
+              quantity: prevState.quantity + 1,
+            }))
             incrementCartItemQuantity(cartItemDetails.id)
             updateTotal(cartItemDetails.cost)
           }
-          const decrementQuantity = () => {
-            this.setState(prevState => ({quantity: prevState.quantity - 1}))
+
+          const decrementQuantity = async () => {
+            await this.setState(prevState => ({
+              quantity: prevState.quantity - 1,
+            }))
             decrementCartItemQuantity(cartItemDetails.id)
             updateTotal(-1 * cartItemDetails.cost)
           }
+
           return (
             <li className="cart-list-item" testid="cartItem">
               <div className="image-item-container">

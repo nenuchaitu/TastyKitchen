@@ -20,9 +20,9 @@ class Login extends Component {
         <div className="login-form-container">
           <div className="image-container">
             <img
+              alt="website login"
               className="mobile-image "
               src={LoginPageSmallScreenImage}
-              alt="website login"
             />
           </div>
           <LoginForm />

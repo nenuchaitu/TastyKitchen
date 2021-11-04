@@ -72,8 +72,8 @@ class App extends Component {
     }
   }
 
-  incrementCartItemQuantity = id => {
-    this.setState(
+  incrementCartItemQuantity = async id => {
+    await this.setState(
       prevState => ({
         cartList: prevState.cartList.map(eachCartItem => {
           if (id === eachCartItem.id) {
@@ -87,24 +87,26 @@ class App extends Component {
     )
   }
 
-  decrementCartItemQuantity = id => {
+  decrementCartItemQuantity = async id => {
     const {cartList} = this.state
     const productObject = cartList.find(eachCartItem => eachCartItem.id === id)
-    if (productObject.quantity > 1) {
-      this.setState(
-        prevState => ({
-          cartList: prevState.cartList.map(eachCartItem => {
-            if (id === eachCartItem.id) {
-              const updatedQuantity = eachCartItem.quantity - 1
-              return {...eachCartItem, quantity: updatedQuantity}
-            }
-            return eachCartItem
+    if (productObject !== undefined) {
+      if (productObject.quantity > 1) {
+        await this.setState(
+          prevState => ({
+            cartList: prevState.cartList.map(eachCartItem => {
+              if (id === eachCartItem.id) {
+                const updatedQuantity = eachCartItem.quantity - 1
+                return {...eachCartItem, quantity: updatedQuantity}
+              }
+              return eachCartItem
+            }),
           }),
-        }),
-        this.setInLocalStorage,
-      )
-    } else {
-      this.removeCartItem(id)
+          this.setInLocalStorage,
+        )
+      } else {
+        this.removeCartItem(id)
+      }
     }
   }
 

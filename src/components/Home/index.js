@@ -45,6 +45,7 @@ class Home extends Component {
       {activeOption: sortByOptions[1].value},
       this.getRestaurantList,
     )
+    this.getRestaurantList()
   }
 
   setOffers = async () => {
@@ -94,6 +95,7 @@ class Home extends Component {
           </p>
           <div className="options-container">
             <BsFilterLeft />
+            <p className="sort-by-text">Sort By</p>
             <select
               className="sort-by-select"
               value={activeOption}
@@ -128,6 +130,7 @@ class Home extends Component {
   })
 
   getRestaurantList = async () => {
+    this.setState({apiStatus: apiStatusConstants.inProgress})
     const {activePageNumber, searchInput, activeOption} = this.state
     const offset = (activePageNumber - 1) * 9
     const LIMIT = 9
@@ -282,9 +285,11 @@ class Home extends Component {
     return (
       <div>
         <Header />
-        <div className="home-body-container" testid="restaurants-list-loader">
-          <Banner offers={offers} />
-          {this.renderApiView()}
+        <div className="home-body-container">
+          <div testid="restaurants-offers-loader">
+            <Banner offers={offers} />
+          </div>
+          <div testid="restaurants-list-loader">{this.renderApiView()}</div>
         </div>
         <Footer />
       </div>
