@@ -4,21 +4,6 @@ import CartItems from '../CartItems'
 
 import './index.css'
 
-const indexItemsList = [
-  {
-    indexId: 'ITEM',
-    displayText: 'Item',
-  },
-  {
-    indexId: 'QUANTITY',
-    displayText: 'Quantity',
-  },
-  {
-    indexId: 'PRICE',
-    displayText: 'Price',
-  },
-]
-
 class CartListView extends Component {
   state = {total: 0}
 

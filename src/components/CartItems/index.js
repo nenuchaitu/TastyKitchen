@@ -49,29 +49,33 @@ class CartItems extends Component {
           }
 
           return (
-            <li className="cart-list-item" testid="cartItem">
-              <div className="image-item-container">
-                <img
-                  className="cart-item-image"
-                  src={imageUrl}
-                  alt="foodItem"
-                />
-              </div>
-              <div className="cart-item-name-cost-and-counter-container">
-                <h1 className="cart-item-name">{name}</h1>
-                <Counter
-                  incrementQuantity={incrementQuantity}
-                  decrementQuantity={decrementQuantity}
-                  quantity={quantity}
-                  testId={{
-                    increment: 'increment-quantity',
-                    decrement: 'decrement-quantity',
-                    quantity: 'item-quantity',
-                  }}
-                />
-                <p className="item-cost">{cost * quantity}</p>
-              </div>
-            </li>
+            <>
+              {quantity > 0 && (
+                <li className="cart-list-item" testid="cartItem">
+                  <div className="image-item-container">
+                    <img
+                      className="cart-item-image"
+                      src={imageUrl}
+                      alt="foodItem"
+                    />
+                  </div>
+                  <div className="cart-item-name-cost-and-counter-container">
+                    <h1 className="cart-item-name">{name}</h1>
+                    <Counter
+                      incrementQuantity={incrementQuantity}
+                      decrementQuantity={decrementQuantity}
+                      quantity={quantity}
+                      testId={{
+                        increment: 'increment-quantity',
+                        decrement: 'decrement-quantity',
+                        quantity: 'item-quantity',
+                      }}
+                    />
+                    <p className="item-cost">{cost * quantity}</p>
+                  </div>
+                </li>
+              )}
+            </>
           )
         }}
       </CartContext.Consumer>

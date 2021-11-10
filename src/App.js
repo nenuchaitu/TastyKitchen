@@ -140,6 +140,7 @@ class App extends Component {
                 setCartListToEmpty={this.setCartListToEmpty}
                 paymentStatus={paymentStatus}
                 setPaymentStatus={this.setPaymentStatus}
+                cartList={cartList}
               />
             )}
           />

@@ -21,15 +21,9 @@ const apiStatusConstants = {
 }
 
 class Cart extends Component {
-  state = {apiStatus: apiStatusConstants.initial, cartList: []}
+  state = {apiStatus: apiStatusConstants.initial}
 
   componentDidMount() {
-    this.setState({apiStatus: apiStatusConstants.inProgress})
-    const cartItems = localStorage.getItem('cartData')
-    if (cartItems !== null) {
-      const cart = JSON.parse(cartItems)
-      this.setState({cartList: cart})
-    }
     const {paymentStatus} = this.props
     if (!paymentStatus) {
       this.setState({apiStatus: apiStatusConstants.cartView})
@@ -65,7 +59,7 @@ class Cart extends Component {
   )
 
   renderCartListView = () => {
-    const {cartList} = this.state
+    const {cartList} = this.props
     return (
       <>
         {cartList.length === 0 ? (
@@ -74,6 +68,7 @@ class Cart extends Component {
           <CartListView
             cartList={cartList}
             setAPIPaymentView={this.setAPIPaymentView}
+            updateCartListCartView={this.updateCartListCartView}
           />
         )}
       </>
