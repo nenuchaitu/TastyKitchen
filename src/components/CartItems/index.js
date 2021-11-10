@@ -27,24 +27,25 @@ class CartItems extends Component {
     return (
       <CartContext.Consumer>
         {value => {
-          const {cartItemDetails, updateTotal} = this.props
-          const {name, imageUrl, cost, quantity} = cartItemDetails
+          const {cartItemDetails, getTotal} = this.props
+          const {quantity} = this.state
+          const {name, imageUrl, cost} = cartItemDetails
           const {incrementCartItemQuantity, decrementCartItemQuantity} = value
 
-          const incrementQuantity = async () => {
-            await this.setState(prevState => ({
+          const incrementQuantity = () => {
+            this.setState(prevState => ({
               quantity: prevState.quantity + 1,
             }))
             incrementCartItemQuantity(cartItemDetails.id)
-            updateTotal(cartItemDetails.cost)
+            getTotal()
           }
 
-          const decrementQuantity = async () => {
-            await this.setState(prevState => ({
+          const decrementQuantity = () => {
+            this.setState(prevState => ({
               quantity: prevState.quantity - 1,
             }))
             decrementCartItemQuantity(cartItemDetails.id)
-            updateTotal(-1 * cartItemDetails.cost)
+            getTotal()
           }
 
           return (
@@ -55,24 +56,9 @@ class CartItems extends Component {
                   src={imageUrl}
                   alt="foodItem"
                 />
-                <div>
-                  <h1 className="cart-item-name">{name}</h1>
-                  <div className="cart-item-cost-and-counter-mobile-container">
-                    <Counter
-                      incrementQuantity={incrementQuantity}
-                      decrementQuantity={decrementQuantity}
-                      quantity={quantity}
-                      testId={{
-                        increment: 'increment-quantity',
-                        decrement: 'decrement-quantity',
-                        quantity: 'item-quantity',
-                      }}
-                    />
-                    <p className="item-cost">{cost * quantity}</p>
-                  </div>
-                </div>
               </div>
-              <div className="cart-item-cost-and-counter-container">
+              <div className="cart-item-name-cost-and-counter-container">
+                <h1 className="cart-item-name">{name}</h1>
                 <Counter
                   incrementQuantity={incrementQuantity}
                   decrementQuantity={decrementQuantity}

@@ -284,7 +284,7 @@ class Home extends Component {
     const {offers} = this.state
     return (
       <div>
-        <Header />
+        <Header activeOption="HOME" />
         <div className="home-body-container">
           <div testid="restaurants-offers-loader">
             <Banner offers={offers} />

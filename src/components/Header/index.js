@@ -18,7 +18,7 @@ const menuOptions = [
 ]
 
 class Header extends Component {
-  state = {openMenu: false, activeOption: menuOptions[0].id}
+  state = {openMenu: false}
 
   onClickLogout = () => {
     const {history} = this.props
@@ -26,12 +26,8 @@ class Header extends Component {
     history.replace('/login')
   }
 
-  setActiveOptionId = async id => {
-    await this.setState({activeOption: id})
-  }
-
   renderMobileMenu = () => {
-    const {activeOption} = this.state
+    const {activeOption} = this.props
     return (
       <div className="mobile-menu-container">
         <ul className="mobile-options-container">
@@ -45,9 +41,6 @@ class Header extends Component {
                     ? 'nav-menu-button selected'
                     : 'nav-menu-button'
                 }
-                onClick={async () => {
-                  await this.setActiveOptionId(option.id)
-                }}
               >
                 {option.option}
               </button>
@@ -72,7 +65,8 @@ class Header extends Component {
   }
 
   render() {
-    const {openMenu, activeOption} = this.state
+    const {openMenu} = this.state
+    const {activeOption} = this.props
 
     return (
       <>
@@ -103,9 +97,6 @@ class Header extends Component {
                       ? 'nav-menu-button selected'
                       : 'nav-menu-button'
                   }
-                  onClick={() => {
-                    this.setActiveOptionId(option.id)
-                  }}
                 >
                   {option.option}
                 </button>

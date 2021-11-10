@@ -37,10 +37,6 @@ class CartListView extends Component {
     this.setState({total: cartTotal})
   }
 
-  updateTotal = amount => {
-    this.setState(prevState => ({total: prevState.total + amount}))
-  }
-
   render() {
     const {cartList, setAPIPaymentView} = this.props
     const {total} = this.state
@@ -48,18 +44,18 @@ class CartListView extends Component {
       <>
         <div className="cart-list-container-large">
           <div className="cart-index-container">
-            {indexItemsList.map(index => (
-              <h1 className="cart-index-heading" key={index.indexId}>
-                {index.displayText}
-              </h1>
-            ))}
+            <h1 className="cart-index-heading item-name-placement">Item</h1>
+            <h1 className="cart-index-heading item-quantity-spacing">
+              Quantity
+            </h1>
+            <h1 className="cart-index-heading">Price</h1>
           </div>
           <ul className="cart-items-list ">
             {cartList.map(cartItem => (
               <CartItems
                 key={cartItem.id}
                 cartItemDetails={cartItem}
-                updateTotal={this.updateTotal}
+                getTotal={this.getTotal}
               />
             ))}
           </ul>

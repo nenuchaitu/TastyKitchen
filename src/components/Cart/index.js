@@ -104,7 +104,7 @@ class Cart extends Component {
   render() {
     return (
       <>
-        <Header />
+        <Header activeOption="CART" />
         <div className="cart-view-container">{this.renderCartView()}</div>
         <Footer />
       </>
